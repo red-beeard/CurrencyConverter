@@ -20,6 +20,8 @@
 		81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867F2774AF3F00D4B3CB /* DataManager.swift */; };
 		81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */; };
 		81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386832774B73D00D4B3CB /* CurrencyCell.swift */; };
+		81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386852774D58B00D4B3CB /* NetworkService.swift */; };
+		81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		81E3867F2774AF3F00D4B3CB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenRouter.swift; sourceTree = "<group>"; };
 		81E386832774B73D00D4B3CB /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		81E386852774D58B00D4B3CB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrencyDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		819347AC2774A8A400917F1E /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				81E386892774DAC400D4B3CB /* Models */,
 				81E3867E2774AF2E00D4B3CB /* Services */,
 				81E386722774ACC300D4B3CB /* Modules */,
 				81E386712774AC8F00D4B3CB /* Supports */,
@@ -116,8 +121,17 @@
 			isa = PBXGroup;
 			children = (
 				81E3867F2774AF3F00D4B3CB /* DataManager.swift */,
+				81E386852774D58B00D4B3CB /* NetworkService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		81E386892774DAC400D4B3CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */,
 				81E386752774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift in Sources */,
 				819347B22774A8A400917F1E /* SelectCurrencyScreenViewController.swift in Sources */,
 				819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */,
@@ -200,6 +215,7 @@
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
 				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
+				81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */,
 				81E386792774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
