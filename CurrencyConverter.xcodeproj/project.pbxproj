@@ -54,12 +54,7 @@
 		819347AC2774A8A400917F1E /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
-				819347AD2774A8A400917F1E /* AppDelegate.swift */,
-				819347AF2774A8A400917F1E /* SceneDelegate.swift */,
-				819347B12774A8A400917F1E /* ViewController.swift */,
-				819347B62774A8A500917F1E /* Assets.xcassets */,
-				819347B82774A8A500917F1E /* LaunchScreen.storyboard */,
-				819347BB2774A8A500917F1E /* Info.plist */,
+				81E386722774ACC300D4B3CB /* Modules */,
 				81E386712774AC8F00D4B3CB /* Supports */,
 			);
 			path = CurrencyConverter;
@@ -68,8 +63,29 @@
 		81E386712774AC8F00D4B3CB /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				819347AD2774A8A400917F1E /* AppDelegate.swift */,
+				819347AF2774A8A400917F1E /* SceneDelegate.swift */,
+				819347B62774A8A500917F1E /* Assets.xcassets */,
+				819347B82774A8A500917F1E /* LaunchScreen.storyboard */,
+				819347BB2774A8A500917F1E /* Info.plist */,
 			);
 			path = Supports;
+			sourceTree = "<group>";
+		};
+		81E386722774ACC300D4B3CB /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				81E386732774ACD200D4B3CB /* SelectCurrencyScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		81E386732774ACD200D4B3CB /* SelectCurrencyScreen */ = {
+			isa = PBXGroup;
+			children = (
+				819347B12774A8A400917F1E /* ViewController.swift */,
+			);
+			path = SelectCurrencyScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
