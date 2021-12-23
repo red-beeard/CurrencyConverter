@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347AD2774A8A400917F1E /* AppDelegate.swift */; };
 		819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347AF2774A8A400917F1E /* SceneDelegate.swift */; };
 		819347B22774A8A400917F1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347B12774A8A400917F1E /* ViewController.swift */; };
-		819347B52774A8A400917F1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819347B32774A8A400917F1E /* Main.storyboard */; };
 		819347B72774A8A500917F1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819347B62774A8A500917F1E /* Assets.xcassets */; };
 		819347BA2774A8A500917F1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819347B82774A8A500917F1E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		819347AD2774A8A400917F1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		819347AF2774A8A400917F1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		819347B12774A8A400917F1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		819347B42774A8A400917F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		819347B62774A8A500917F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		819347B92774A8A500917F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		819347BB2774A8A500917F1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,12 +57,19 @@
 				819347AD2774A8A400917F1E /* AppDelegate.swift */,
 				819347AF2774A8A400917F1E /* SceneDelegate.swift */,
 				819347B12774A8A400917F1E /* ViewController.swift */,
-				819347B32774A8A400917F1E /* Main.storyboard */,
 				819347B62774A8A500917F1E /* Assets.xcassets */,
 				819347B82774A8A500917F1E /* LaunchScreen.storyboard */,
 				819347BB2774A8A500917F1E /* Info.plist */,
+				81E386712774AC8F00D4B3CB /* Supports */,
 			);
 			path = CurrencyConverter;
+			sourceTree = "<group>";
+		};
+		81E386712774AC8F00D4B3CB /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,7 +108,7 @@
 				};
 			};
 			buildConfigurationList = 819347A52774A8A400917F1E /* Build configuration list for PBXProject "CurrencyConverter" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -127,7 +132,6 @@
 			files = (
 				819347BA2774A8A500917F1E /* LaunchScreen.storyboard in Resources */,
 				819347B72774A8A500917F1E /* Assets.xcassets in Resources */,
-				819347B52774A8A400917F1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +151,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		819347B32774A8A400917F1E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				819347B42774A8A400917F1E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		819347B82774A8A500917F1E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +288,10 @@
 				DEVELOPMENT_TEAM = PWX4C5TRB6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Currency Converter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,9 +317,10 @@
 				DEVELOPMENT_TEAM = PWX4C5TRB6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Currency Converter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
