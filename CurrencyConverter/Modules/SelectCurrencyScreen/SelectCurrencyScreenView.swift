@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ISelectCurrencyScreenView: UIView {
-    
+    func getTableView() -> UITableView
 }
 
 final class SelectCurrencyScreenView: UIView {
@@ -45,5 +45,9 @@ private extension SelectCurrencyScreenView {
 }
 
 extension SelectCurrencyScreenView: ISelectCurrencyScreenView {
+    
+    func getTableView() -> UITableView {
+        return self.tableView
+    }
     
 }

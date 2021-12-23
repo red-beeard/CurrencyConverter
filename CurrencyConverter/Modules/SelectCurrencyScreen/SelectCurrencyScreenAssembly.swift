@@ -11,7 +11,13 @@ final class SelectCurrencyScreenAssembly {
     static func build() -> UIViewController {
         let dataManager = DataManager.shared
         let router = SelectCurrencyScreenRouter()
-        let presenter = SelectCurrencyScreenPresenter(dataManager: dataManager, router: router)
+        let tableAdapter = SelectCurrencyScreenTableAdapter()
+        
+        let presenter = SelectCurrencyScreenPresenter(
+            dataManager: dataManager,
+            router: router,
+            tableAdapter: tableAdapter
+        )
         
         let controller = SelectCurrencyScreenViewController(presenter: presenter)
         router.controller = controller

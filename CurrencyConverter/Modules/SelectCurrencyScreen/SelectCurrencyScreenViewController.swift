@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ISelectCurrencyScreenViewController: UIViewController {
-    
+    func setTitle(_ title: String)
 }
 
 final class SelectCurrencyScreenViewController: UIViewController {
@@ -33,12 +33,15 @@ final class SelectCurrencyScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view = self.selectScreenView
-        self.title = "Title"
     }
     
 }
 
 extension SelectCurrencyScreenViewController: ISelectCurrencyScreenViewController {
+    
+    func setTitle(_ title: String) {
+        self.title = title
+    }
     
 }
 

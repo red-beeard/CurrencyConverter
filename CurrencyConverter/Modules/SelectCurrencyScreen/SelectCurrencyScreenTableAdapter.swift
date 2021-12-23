@@ -5,4 +5,19 @@
 //  Created by Red Beard on 23.12.2021.
 //
 
-import Foundation
+import UIKit
+
+protocol ISelectCurrencyScreenTableAdapter: AnyObject {
+    var tableView: UITableView? { get set }
+}
+
+final class SelectCurrencyScreenTableAdapter {
+    
+//    private var
+    weak var tableView: UITableView?
+    
+}
+
+extension SelectCurrencyScreenTableAdapter: ISelectCurrencyScreenTableAdapter {
+    
+}
