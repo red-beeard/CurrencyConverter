@@ -19,6 +19,7 @@
 		81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */; };
 		81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867F2774AF3F00D4B3CB /* DataManager.swift */; };
 		81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */; };
+		81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386832774B73D00D4B3CB /* CurrencyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenViewModel.swift; sourceTree = "<group>"; };
 		81E3867F2774AF3F00D4B3CB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenRouter.swift; sourceTree = "<group>"; };
+		81E386832774B73D00D4B3CB /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				81E3867A2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift */,
 				81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */,
 				81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */,
+				81E386832774B73D00D4B3CB /* CurrencyCell.swift */,
 			);
 			path = SelectCurrencyScreen;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				81E3867B2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift in Sources */,
 				81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */,
 				81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */,
+				81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */,
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
 				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
