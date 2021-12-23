@@ -9,19 +9,33 @@
 /* Begin PBXBuildFile section */
 		819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347AD2774A8A400917F1E /* AppDelegate.swift */; };
 		819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347AF2774A8A400917F1E /* SceneDelegate.swift */; };
-		819347B22774A8A400917F1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347B12774A8A400917F1E /* ViewController.swift */; };
+		819347B22774A8A400917F1E /* SelectCurrencyScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819347B12774A8A400917F1E /* SelectCurrencyScreenViewController.swift */; };
 		819347B72774A8A500917F1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819347B62774A8A500917F1E /* Assets.xcassets */; };
 		819347BA2774A8A500917F1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819347B82774A8A500917F1E /* LaunchScreen.storyboard */; };
+		81E386752774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386742774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift */; };
+		81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386762774ADC900D4B3CB /* SelectCurrencyScreenView.swift */; };
+		81E386792774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386782774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift */; };
+		81E3867B2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867A2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift */; };
+		81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */; };
+		81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E3867F2774AF3F00D4B3CB /* DataManager.swift */; };
+		81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		819347AA2774A8A400917F1E /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819347AD2774A8A400917F1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		819347AF2774A8A400917F1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		819347B12774A8A400917F1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		819347B12774A8A400917F1E /* SelectCurrencyScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenViewController.swift; sourceTree = "<group>"; };
 		819347B62774A8A500917F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		819347B92774A8A500917F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		819347BB2774A8A500917F1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81E386742774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenAssembly.swift; sourceTree = "<group>"; };
+		81E386762774ADC900D4B3CB /* SelectCurrencyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenView.swift; sourceTree = "<group>"; };
+		81E386782774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenPresenter.swift; sourceTree = "<group>"; };
+		81E3867A2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenTableAdapter.swift; sourceTree = "<group>"; };
+		81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenViewModel.swift; sourceTree = "<group>"; };
+		81E3867F2774AF3F00D4B3CB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 		819347AC2774A8A400917F1E /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				81E3867E2774AF2E00D4B3CB /* Services */,
 				81E386722774ACC300D4B3CB /* Modules */,
 				81E386712774AC8F00D4B3CB /* Supports */,
 			);
@@ -83,9 +98,23 @@
 		81E386732774ACD200D4B3CB /* SelectCurrencyScreen */ = {
 			isa = PBXGroup;
 			children = (
-				819347B12774A8A400917F1E /* ViewController.swift */,
+				819347B12774A8A400917F1E /* SelectCurrencyScreenViewController.swift */,
+				81E386742774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift */,
+				81E386762774ADC900D4B3CB /* SelectCurrencyScreenView.swift */,
+				81E386782774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift */,
+				81E3867A2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift */,
+				81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */,
+				81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */,
 			);
 			path = SelectCurrencyScreen;
+			sourceTree = "<group>";
+		};
+		81E3867E2774AF2E00D4B3CB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				81E3867F2774AF3F00D4B3CB /* DataManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,9 +187,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				819347B22774A8A400917F1E /* ViewController.swift in Sources */,
+				81E386752774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift in Sources */,
+				819347B22774A8A400917F1E /* SelectCurrencyScreenViewController.swift in Sources */,
 				819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */,
+				81E3867B2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift in Sources */,
+				81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */,
+				81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */,
+				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
+				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
+				81E386792774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +339,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PWX4C5TRB6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_FILE = CurrencyConverter/Supports/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Currency Converter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -332,7 +368,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PWX4C5TRB6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CurrencyConverter/Info.plist;
+				INFOPLIST_FILE = CurrencyConverter/Supports/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Currency Converter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
