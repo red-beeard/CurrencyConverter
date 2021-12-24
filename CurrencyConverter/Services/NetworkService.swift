@@ -8,7 +8,7 @@
 import Foundation
 
 protocol INetworkService {
-    
+    func loadSupportedCurrencies()
 }
 
 final class NetworkService {
@@ -20,16 +20,40 @@ final class NetworkService {
     private let session = URLSession(configuration: .default)
     private let apiURL = "https://api.currencyfreaks.com"
     
+    private func printData(_ data: Data) {
+        print(String(decoding: data, as: UTF8.self))
+    }
+    
+    private func dataToUTF8(_ data: Data?) -> Data? {
+        guard let data = data else {
+            return nil
+        }
+        
+        let dataInString = String(decoding: data, as: UTF8.self)
+        return dataInString.data(using: .utf8)
+    }
+}
+
+extension NetworkService: INetworkService {
+    
     func loadSupportedCurrencies() {
         guard let url = URL(string: apiURL + EndPoints.supportedCurrencies.rawValue) else { return }
         
         let request = URLRequest(url: url)
-        self.session.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                return
+        
+        session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error)
             }
-
-            print(String(data: data, encoding: .utf8) ?? "nil")
-        }
+            
+            if let data =  self.dataToUTF8(data) {
+                do {
+                    let supportedCurrencies = try JSONDecoder().decode(SupportedCurrenciesDTO.self, from: data)
+                } catch {
+                    print(error)
+                }
+            }
+        }.resume()
     }
+    
 }

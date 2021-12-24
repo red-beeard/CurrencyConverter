@@ -13,7 +13,11 @@ final class DataManager {
     
     static let shared = DataManager()
     
-    private init() { }
+    private let networkService: INetworkService = NetworkService()
+    
+    private init() {
+        self.networkService.loadSupportedCurrencies()
+    }
     
 }
 
