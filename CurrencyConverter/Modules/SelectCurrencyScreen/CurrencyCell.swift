@@ -27,7 +27,7 @@ final class CurrencyCell: UITableViewCell {
         static let spacingInStack = CGFloat(8)
     }
     
-    let flagCountry = UIImageView()
+    let flagImageView = UIImageView()
     let currencyCode = UILabel()
     let currencyName = UILabel()
     
@@ -52,10 +52,10 @@ private extension CurrencyCell {
     }
     
     func configuireFlagCountry() {
-        self.flagCountry.translatesAutoresizingMaskIntoConstraints = false
-        self.flagCountry.clipsToBounds = true
-        self.flagCountry.layer.cornerRadius = Constants.flagCountryCornerRadius
-        self.flagCountry.contentMode = .scaleAspectFit
+        self.flagImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.flagImageView.clipsToBounds = true
+        self.flagImageView.layer.cornerRadius = Constants.flagCountryCornerRadius
+        self.flagImageView.contentMode = .scaleAspectFit
     }
     
     func configuireCurrencyCode() {
@@ -83,13 +83,13 @@ private extension CurrencyCell {
     }
     
     func configuireFlagCountryLayout() {
-        self.contentView.addSubview(self.flagCountry)
+        self.contentView.addSubview(self.flagImageView)
         
         NSLayoutConstraint.activate([
-            self.flagCountry.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Constants.spacingToScreen),
-            self.flagCountry.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: Constants.spacingInCell),
-            self.flagCountry.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Constants.spacingInCell),
-            self.flagCountry.widthAnchor.constraint(equalTo: self.flagCountry.heightAnchor)
+            self.flagImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Constants.spacingToScreen),
+            self.flagImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: Constants.spacingInCell),
+            self.flagImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Constants.spacingInCell),
+            self.flagImageView.widthAnchor.constraint(equalTo: self.flagImageView.heightAnchor)
         ])
     }
     
@@ -102,7 +102,7 @@ private extension CurrencyCell {
         self.contentView.addSubview(vStack)
         
         NSLayoutConstraint.activate([
-            vStack.leadingAnchor.constraint(equalTo: self.flagCountry.trailingAnchor, constant: Constants.spacingInCell),
+            vStack.leadingAnchor.constraint(equalTo: self.flagImageView.trailingAnchor, constant: Constants.spacingInCell),
             vStack.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Constants.spacingToScreen),
             vStack.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
