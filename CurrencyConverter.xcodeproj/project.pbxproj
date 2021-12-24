@@ -22,6 +22,12 @@
 		81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386832774B73D00D4B3CB /* CurrencyCell.swift */; };
 		81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386852774D58B00D4B3CB /* NetworkService.swift */; };
 		81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */; };
+		81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A22775CB8300D4B3CB /* ConverterScreenAssembly.swift */; };
+		81E386A52775CB9300D4B3CB /* ConverterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A42775CB9300D4B3CB /* ConverterScreenViewController.swift */; };
+		81E386A72775CBBF00D4B3CB /* ConverterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A62775CBBF00D4B3CB /* ConverterScreenView.swift */; };
+		81E386A92775CBC700D4B3CB /* ConverterScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A82775CBC700D4B3CB /* ConverterScreenPresenter.swift */; };
+		81E386AB2775CBCD00D4B3CB /* ConverterScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386AA2775CBCD00D4B3CB /* ConverterScreenRouter.swift */; };
+		81E386AD2775D10A00D4B3CB /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386AC2775D10A00D4B3CB /* CurrencyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		81E386832774B73D00D4B3CB /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		81E386852774D58B00D4B3CB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrencyDTO.swift; sourceTree = "<group>"; };
+		81E386A22775CB8300D4B3CB /* ConverterScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenAssembly.swift; sourceTree = "<group>"; };
+		81E386A42775CB9300D4B3CB /* ConverterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenViewController.swift; sourceTree = "<group>"; };
+		81E386A62775CBBF00D4B3CB /* ConverterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenView.swift; sourceTree = "<group>"; };
+		81E386A82775CBC700D4B3CB /* ConverterScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenPresenter.swift; sourceTree = "<group>"; };
+		81E386AA2775CBCD00D4B3CB /* ConverterScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenRouter.swift; sourceTree = "<group>"; };
+		81E386AC2775D10A00D4B3CB /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,7 @@
 		81E386722774ACC300D4B3CB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				81E386A12775CB6300D4B3CB /* ConverterScreen */,
 				81E386732774ACD200D4B3CB /* SelectCurrencyScreen */,
 			);
 			path = Modules;
@@ -132,6 +145,19 @@
 				81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		81E386A12775CB6300D4B3CB /* ConverterScreen */ = {
+			isa = PBXGroup;
+			children = (
+				81E386A22775CB8300D4B3CB /* ConverterScreenAssembly.swift */,
+				81E386A42775CB9300D4B3CB /* ConverterScreenViewController.swift */,
+				81E386A62775CBBF00D4B3CB /* ConverterScreenView.swift */,
+				81E386A82775CBC700D4B3CB /* ConverterScreenPresenter.swift */,
+				81E386AA2775CBCD00D4B3CB /* ConverterScreenRouter.swift */,
+				81E386AC2775D10A00D4B3CB /* CurrencyView.swift */,
+			);
+			path = ConverterScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,15 +231,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */,
+				81E386AB2775CBCD00D4B3CB /* ConverterScreenRouter.swift in Sources */,
 				81E386752774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift in Sources */,
 				819347B22774A8A400917F1E /* SelectCurrencyScreenViewController.swift in Sources */,
 				819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */,
+				81E386AD2775D10A00D4B3CB /* CurrencyView.swift in Sources */,
 				81E3867B2774ADF300D4B3CB /* SelectCurrencyScreenTableAdapter.swift in Sources */,
+				81E386A92775CBC700D4B3CB /* ConverterScreenPresenter.swift in Sources */,
 				81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */,
 				81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */,
+				81E386A72775CBBF00D4B3CB /* ConverterScreenView.swift in Sources */,
 				81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */,
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
+				81E386A52775CB9300D4B3CB /* ConverterScreenViewController.swift in Sources */,
+				81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */,
 				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
 				81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */,
 				81E386792774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift in Sources */,
