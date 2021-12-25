@@ -18,7 +18,7 @@ struct SupportedCurrencyDTO: Decodable {
     let currencyCode, currencyName: String
     let status: StatusDTO
     let countryCode, countryName: String
-    let iconURL: String
+    let iconURL: URL
 
     private enum CodingKeys: String, CodingKey {
         case currencyCode, currencyName
@@ -35,7 +35,7 @@ struct SupportedCurrencyDTO: Decodable {
         self.status = try container.decode(StatusDTO.self, forKey: .status)
         self.countryCode = try container.decode(String.self, forKey: .countryCode)
         self.countryName = try container.decode(String.self, forKey: .countryName)
-        self.iconURL = try container.decode(String.self, forKey: .icon)
+        self.iconURL = try container.decode(URL.self, forKey: .icon)
     }
 
 }
