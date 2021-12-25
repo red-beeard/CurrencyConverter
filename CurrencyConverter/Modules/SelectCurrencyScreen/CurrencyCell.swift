@@ -8,9 +8,8 @@
 import UIKit
 
 protocol ICurrencyCell {
-    
     static var indentifier: String { get }
-    
+    func update(viewModel: SelectCurrencyScreenViewModel)
 }
 
 final class CurrencyCell: UITableViewCell {
@@ -24,7 +23,9 @@ final class CurrencyCell: UITableViewCell {
         
         static let spacingToScreen = CGFloat(20)
         static let spacingInCell = CGFloat(10)
-        static let spacingInStack = CGFloat(8)
+        static let spacingInStack = CGFloat(0)
+        
+        static let noFlagImageName = "flag.slash.circle"
     }
     
     let flagImageView = UIImageView()
@@ -38,6 +39,7 @@ final class CurrencyCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.configuireView()
+        self.configuireViewLayout()
     }
     
 }
@@ -111,5 +113,17 @@ private extension CurrencyCell {
 }
 
 extension CurrencyCell: ICurrencyCell {
+    
+    func update(viewModel: SelectCurrencyScreenViewModel) {
+        self.currencyCode.text = viewModel.currencyCode
+        self.currencyName.text = viewModel.currencyName
+        
+        if let data = viewModel.image, let image = UIImage(data: data) {
+            self.flagImageView.image = image
+        } else {
+            let image = UIImage(systemName: Constants.noFlagImageName)?.withTintColor(.systemGray)
+            self.flagImageView.image = image
+        }
+    }
     
 }

@@ -13,7 +13,11 @@ protocol ISelectCurrencyScreenView: UIView {
 
 final class SelectCurrencyScreenView: UIView {
     
-    private let tableView = UITableView()
+    private enum Constants {
+        static let tableViewRowHeight = CGFloat(55)
+    }
+    
+    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,6 +36,7 @@ private extension SelectCurrencyScreenView {
     func configuireView() {
         self.backgroundColor = .systemBackground
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.rowHeight = Constants.tableViewRowHeight
         
         self.addSubview(self.tableView)
         NSLayoutConstraint.activate([

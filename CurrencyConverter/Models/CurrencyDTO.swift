@@ -21,4 +21,3 @@ struct CurrencyDTO {
         self.exchangeRate = currency.exchangeRate?.doubleValue
     }
 }
-

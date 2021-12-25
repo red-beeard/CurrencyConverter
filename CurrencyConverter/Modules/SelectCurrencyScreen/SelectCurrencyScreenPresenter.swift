@@ -28,6 +28,18 @@ final class SelectCurrencyScreenPresenter {
         self.tableAdapter = tableAdapter
     }
     
+    private func loadData() {
+        self.dataManager.loadAvailableCurrenciesWithRate { result in
+            switch result {
+            case .success(let currencies):
+                let viewModelCurrencies = currencies.map { SelectCurrencyScreenViewModel($0) }
+                self.tableAdapter.update(viewModelCurrencies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 extension SelectCurrencyScreenPresenter: ISelectCurrencyScreenPresenter {
@@ -38,7 +50,7 @@ extension SelectCurrencyScreenPresenter: ISelectCurrencyScreenPresenter {
         
         self.view = view
         self.tableAdapter.tableView = self.view?.getTableView()
-        
+        self.loadData()
     }
     
 }

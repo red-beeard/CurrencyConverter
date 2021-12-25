@@ -33,6 +33,7 @@ final class SelectCurrencyScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view = self.selectScreenView
+        self.navigationController?.navigationItem.searchController = UISearchController()
     }
     
 }

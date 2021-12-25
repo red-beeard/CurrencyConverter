@@ -49,11 +49,12 @@ final class CoreDataService {
 extension CoreDataService: ICoreDataUpdateData {
     
     func updateFromNetwork(currencies: SupportedCurrencies) throws {
-        guard let entity = NSEntityDescription.entity(forEntityName: "Currency", in: persistentContainer.viewContext) else { return }
+        let context = persistentContainer.newBackgroundContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: "Currency", in: context) else { return }
         let fetchRequest = Currency.fetchRequest()
         
         var newCurrencies = currencies
-        let oldCurrencies = try persistentContainer.viewContext.fetch(fetchRequest)
+        let oldCurrencies = try context.fetch(fetchRequest)
         
         for oldCurrency in oldCurrencies {
             if let index = newCurrencies.firstIndex(where: { $0.currencyCode == oldCurrency.currencyCode}) {
@@ -69,7 +70,14 @@ extension CoreDataService: ICoreDataUpdateData {
             newCurrencyEntity.setValues(from: newCurrency)
         }
         
-        self.saveContext()
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
     func updateFromNetwork(rates: LatestExchangeRates) throws {
@@ -94,8 +102,9 @@ extension CoreDataService: ICoreDataUpdateData {
     }
     
     func needToUploadIcons() throws -> [CurrencyToLoadImage] {
+        let context = persistentContainer.newBackgroundContext()
         let fetchRequest = Currency.fetchRequest()
-        let currencies = try persistentContainer.viewContext.fetch(fetchRequest)
+        let currencies = try context.fetch(fetchRequest)
         
         let result = currencies.compactMap { currency -> CurrencyToLoadImage? in
             if currency.icon == nil {
