@@ -21,7 +21,7 @@
 		81E386822774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */; };
 		81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386832774B73D00D4B3CB /* CurrencyCell.swift */; };
 		81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386852774D58B00D4B3CB /* NetworkService.swift */; };
-		81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */; };
+		81E386882774DABB00D4B3CB /* SupportedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386872774DABB00D4B3CB /* SupportedCurrency.swift */; };
 		81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A22775CB8300D4B3CB /* ConverterScreenAssembly.swift */; };
 		81E386A52775CB9300D4B3CB /* ConverterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A42775CB9300D4B3CB /* ConverterScreenViewController.swift */; };
 		81E386A72775CBBF00D4B3CB /* ConverterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386A62775CBBF00D4B3CB /* ConverterScreenView.swift */; };
@@ -32,8 +32,9 @@
 		81E386B3277709E200D4B3CB /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B1277709E200D4B3CB /* Currency+CoreDataClass.swift */; };
 		81E386B4277709E200D4B3CB /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B2277709E200D4B3CB /* Currency+CoreDataProperties.swift */; };
 		81E386B627770A4700D4B3CB /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B527770A4700D4B3CB /* CoreDataService.swift */; };
-		81E386B827770ADF00D4B3CB /* LatestExchangeRatesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B727770ADE00D4B3CB /* LatestExchangeRatesDTO.swift */; };
-		81E386BA27772A8100D4B3CB /* CurrencyToLoadImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B927772A8100D4B3CB /* CurrencyToLoadImageDTO.swift */; };
+		81E386B827770ADF00D4B3CB /* LatestExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */; };
+		81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */; };
+		81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,7 @@
 		81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyScreenRouter.swift; sourceTree = "<group>"; };
 		81E386832774B73D00D4B3CB /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		81E386852774D58B00D4B3CB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrencyDTO.swift; sourceTree = "<group>"; };
+		81E386872774DABB00D4B3CB /* SupportedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrency.swift; sourceTree = "<group>"; };
 		81E386A22775CB8300D4B3CB /* ConverterScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenAssembly.swift; sourceTree = "<group>"; };
 		81E386A42775CB9300D4B3CB /* ConverterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenViewController.swift; sourceTree = "<group>"; };
 		81E386A62775CBBF00D4B3CB /* ConverterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterScreenView.swift; sourceTree = "<group>"; };
@@ -64,8 +65,9 @@
 		81E386B1277709E200D4B3CB /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
 		81E386B2277709E200D4B3CB /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		81E386B527770A4700D4B3CB /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		81E386B727770ADE00D4B3CB /* LatestExchangeRatesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestExchangeRatesDTO.swift; sourceTree = "<group>"; };
-		81E386B927772A8100D4B3CB /* CurrencyToLoadImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToLoadImageDTO.swift; sourceTree = "<group>"; };
+		81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestExchangeRates.swift; sourceTree = "<group>"; };
+		81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToLoadImage.swift; sourceTree = "<group>"; };
+		81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +160,10 @@
 				81E386B1277709E200D4B3CB /* Currency+CoreDataClass.swift */,
 				81E386B2277709E200D4B3CB /* Currency+CoreDataProperties.swift */,
 				81E386AE277618DD00D4B3CB /* CurrencyModel.xcdatamodeld */,
-				81E386872774DABB00D4B3CB /* SupportedCurrencyDTO.swift */,
-				81E386B727770ADE00D4B3CB /* LatestExchangeRatesDTO.swift */,
-				81E386B927772A8100D4B3CB /* CurrencyToLoadImageDTO.swift */,
+				81E386872774DABB00D4B3CB /* SupportedCurrency.swift */,
+				81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */,
+				81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */,
+				81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,10 +251,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81E386882774DABB00D4B3CB /* SupportedCurrencyDTO.swift in Sources */,
+				81E386882774DABB00D4B3CB /* SupportedCurrency.swift in Sources */,
 				81E386AB2775CBCD00D4B3CB /* ConverterScreenRouter.swift in Sources */,
 				81E386752774ADBD00D4B3CB /* SelectCurrencyScreenAssembly.swift in Sources */,
-				81E386B827770ADF00D4B3CB /* LatestExchangeRatesDTO.swift in Sources */,
+				81E386B827770ADF00D4B3CB /* LatestExchangeRates.swift in Sources */,
 				819347B22774A8A400917F1E /* SelectCurrencyScreenViewController.swift in Sources */,
 				819347AE2774A8A400917F1E /* AppDelegate.swift in Sources */,
 				81E386B3277709E200D4B3CB /* Currency+CoreDataClass.swift in Sources */,
@@ -262,9 +265,10 @@
 				81E386B0277618DD00D4B3CB /* CurrencyModel.xcdatamodeld in Sources */,
 				81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */,
 				81E386A72775CBBF00D4B3CB /* ConverterScreenView.swift in Sources */,
+				81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */,
 				81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */,
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
-				81E386BA27772A8100D4B3CB /* CurrencyToLoadImageDTO.swift in Sources */,
+				81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
 				81E386A52775CB9300D4B3CB /* ConverterScreenViewController.swift in Sources */,
 				81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */,

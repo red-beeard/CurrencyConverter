@@ -1,5 +1,5 @@
 //
-//  CurrencyToLoadImageDTO.swift
+//  CurrencyToLoadImage.swift
 //  CurrencyConverter
 //
 //  Created by Red Beard on 25.12.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyToLoadImageDTO {
+struct CurrencyToLoadImage {
     let currencyCode: String
     let iconURL: URL
     var imageData: Data?

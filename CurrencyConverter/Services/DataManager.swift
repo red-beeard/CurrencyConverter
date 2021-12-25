@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IDataManager {
-    
+    func loadAvailableCurrenciesWithRate(completion: @escaping (Result<[CurrencyDTO], Error>) -> Void)
 }
 
 final class DataManager {
@@ -19,53 +19,67 @@ final class DataManager {
     private let coreDataService: ICoreDataService = CoreDataService()
     
     private init() {
-        self.initiaDataLoading()
+        self.updateData()
     }
     
-    private func initiaDataLoading() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let group = DispatchGroup()
-            
-            group.enter()
-            self.networkService.loadSupportedCurrencies { result in
-                switch result {
-                case .success(let supportedCurrencies):
-                    try? self.coreDataService.updateFromNetwork(currencies: supportedCurrencies)
-                    print("supportedCurrencies")
-                case .failure(let error):
-                    print(error)
-                }
-                group.leave()
+    private func loadSupportedCurrencies(group: DispatchGroup) {
+        self.networkService.loadSupportedCurrencies { result in
+            switch result {
+            case .success(let supportedCurrencies):
+                try? self.coreDataService.updateFromNetwork(currencies: supportedCurrencies)
+                print("supportedCurrencies")
+            case .failure(let error):
+                print(error)
             }
-            
-            group.wait()
-            self.networkService.loadExchangeRates { result in
-                switch result {
-                case .success(let exchangeRates):
-                    try? self.coreDataService.updateFromNetwork(rates: exchangeRates)
-                    print("exchangeRates")
-                case .failure(let error):
-                    print(error)
-                }
+            group.leave()
+        }
+    }
+    
+    private func loadExchangeRates(group: DispatchGroup) {
+        self.networkService.loadExchangeRates { result in
+            switch result {
+            case .success(let exchangeRates):
+                try? self.coreDataService.updateFromNetwork(rates: exchangeRates)
+                print("exchangeRates")
+            case .failure(let error):
+                print(error)
             }
-            
-            if let currencies = try? self.coreDataService.needToUploadIcons() {
-                for currency in currencies {
-                    self.networkService.loadImage(currency: currency) { currency, result in
-                        switch result {
-                        case .success(let data):
-                            var newCurrency = currency
-                            newCurrency.imageData = data
-                            
-                            try? self.coreDataService.updateImageFor(currency: newCurrency)
-                            print("updateImageFor \(newCurrency.currencyCode)")
-                        case .failure(let error):
-                            print(error)
-                        }
+            group.leave()
+        }
+    }
+    
+    private func loadImages(group: DispatchGroup) {
+        if let currencies = try? self.coreDataService.needToUploadIcons() {
+            for currency in currencies {
+                group.enter()
+                self.networkService.loadImage(currency: currency) { currency, result in
+                    switch result {
+                    case .success(let data):
+                        var newCurrency = currency
+                        newCurrency.imageData = data
+                        
+                        try? self.coreDataService.updateImageFor(currency: newCurrency)
+                        print("updateImageFor \(newCurrency.currencyCode)")
+                    case .failure(let error):
+                        print(error)
                     }
+                    group.leave()
                 }
             }
-            
+        }
+        group.leave()
+    }
+    
+    private func updateData(group: DispatchGroup = DispatchGroup()) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            group.enter()
+            self.loadSupportedCurrencies(group: group)
+            group.wait()
+            group.enter()
+            self.loadExchangeRates(group: group)
+            group.enter()
+            self.loadImages(group: group)
+            group.wait()
         }
     }
     
@@ -73,16 +87,21 @@ final class DataManager {
 
 extension DataManager: IDataManager {
     
-    func loadSupportedCurrencies(completion: @escaping (Result<SupportedCurrenciesDTO, Error>) -> Void) {
+    func loadAvailableCurrenciesWithRate(completion: @escaping (Result<[CurrencyDTO], Error>) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-//            self.coreDataService.loadSupportedCurrencies(completion: completion)
-            self.networkService.loadSupportedCurrencies(completion: completion)
-        }
-    }
-    
-    func loadExchangeRates(completion: @escaping (Result<LatestExchangeRatesDTO, Error>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.networkService.loadExchangeRates(completion: completion)
+            do {
+                let group = DispatchGroup()
+                
+                var currencies = try self.coreDataService.getAvailableCurrencies()
+                completion(.success(currencies))
+                
+                self.updateData(group: group)
+                
+                currencies = try self.coreDataService.getAvailableCurrencies()
+                completion(.success(currencies))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
     

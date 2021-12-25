@@ -7,12 +7,18 @@
 
 import CoreData
 
-protocol ICoreDataService {
-    func updateFromNetwork(currencies: SupportedCurrenciesDTO) throws
-    func updateFromNetwork(rates: LatestExchangeRatesDTO) throws
-    func needToUploadIcons() throws -> [CurrencyToLoadImageDTO]
-    func updateImageFor(currency: CurrencyToLoadImageDTO) throws
+protocol ICoreDataUpdateData {
+    func updateFromNetwork(currencies: SupportedCurrencies) throws
+    func updateFromNetwork(rates: LatestExchangeRates) throws
+    func needToUploadIcons() throws -> [CurrencyToLoadImage]
+    func updateImageFor(currency: CurrencyToLoadImage) throws
 }
+
+protocol ICoreDataGetData {
+    func getAvailableCurrencies() throws -> [CurrencyDTO]
+}
+
+typealias ICoreDataService = ICoreDataUpdateData & ICoreDataGetData
 
 final class CoreDataService {
     
@@ -40,14 +46,14 @@ final class CoreDataService {
 }
 
 //MARK: Functions for update data
-extension CoreDataService: ICoreDataService {
+extension CoreDataService: ICoreDataUpdateData {
     
-    func updateFromNetwork(currencies: SupportedCurrenciesDTO) throws {
+    func updateFromNetwork(currencies: SupportedCurrencies) throws {
         guard let entity = NSEntityDescription.entity(forEntityName: "Currency", in: persistentContainer.viewContext) else { return }
         let fetchRequest = Currency.fetchRequest()
         
         var newCurrencies = currencies
-        let oldCurrencies = try persistentContainer.newBackgroundContext().fetch(fetchRequest)
+        let oldCurrencies = try persistentContainer.viewContext.fetch(fetchRequest)
         
         for oldCurrency in oldCurrencies {
             if let index = newCurrencies.firstIndex(where: { $0.currencyCode == oldCurrency.currencyCode}) {
@@ -66,10 +72,10 @@ extension CoreDataService: ICoreDataService {
         self.saveContext()
     }
     
-    func updateFromNetwork(rates: LatestExchangeRatesDTO) throws {
+    func updateFromNetwork(rates: LatestExchangeRates) throws {
         let fetchRequest = Currency.fetchRequest()
-        
-        let currencies = try persistentContainer.newBackgroundContext().fetch(fetchRequest)
+        let context = persistentContainer.newBackgroundContext()
+        let currencies = try context.fetch(fetchRequest)
         
         for (currencyCode, rate) in rates.rates {
             if let currency = currencies.first(where: { $0.currencyCode == currencyCode }) {
@@ -77,16 +83,23 @@ extension CoreDataService: ICoreDataService {
             }
         }
         
-        self.saveContext()
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
-    func needToUploadIcons() throws -> [CurrencyToLoadImageDTO] {
+    func needToUploadIcons() throws -> [CurrencyToLoadImage] {
         let fetchRequest = Currency.fetchRequest()
-        let currencies = try persistentContainer.newBackgroundContext().fetch(fetchRequest)
+        let currencies = try persistentContainer.viewContext.fetch(fetchRequest)
         
-        let result = currencies.compactMap { currency -> CurrencyToLoadImageDTO? in
+        let result = currencies.compactMap { currency -> CurrencyToLoadImage? in
             if currency.icon == nil {
-                return CurrencyToLoadImageDTO(from: currency)
+                return CurrencyToLoadImage(from: currency)
             }
             return nil
         }
@@ -94,7 +107,7 @@ extension CoreDataService: ICoreDataService {
         return result
     }
     
-    func updateImageFor(currency: CurrencyToLoadImageDTO) throws {
+    func updateImageFor(currency: CurrencyToLoadImage) throws {
         let fetchRequest = Currency.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", currency.currencyCode)
         
@@ -113,6 +126,20 @@ extension CoreDataService: ICoreDataService {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+}
+
+//MARK: ICoreDataGetData
+extension CoreDataService: ICoreDataGetData {
+    
+    func getAvailableCurrencies() throws -> [CurrencyDTO] {
+        let fetchRequest = Currency.fetchRequest()
+        let currencies = try persistentContainer.viewContext.fetch(fetchRequest)
+        
+        let availableCurrencies = currencies.filter { $0.status == StatusCurrency.available.rawValue }
+        
+        return availableCurrencies.compactMap { CurrencyDTO(currency: $0) }
     }
     
 }

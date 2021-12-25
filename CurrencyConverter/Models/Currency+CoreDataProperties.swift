@@ -34,7 +34,7 @@ extension Currency : Identifiable {
 
 extension Currency {
     
-    func setValues(from currency: SupportedCurrencyDTO) {
+    func setValues(from currency: SupportedCurrency) {
         self.currencyCode = currency.currencyCode
         self.currencyName = currency.currencyName
         self.iconURL = currency.iconURL

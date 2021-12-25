@@ -1,5 +1,5 @@
 //
-//  SupportedCurrencyDTO.swift
+//  SupportedCurrency.swift
 //  CurrencyConverter
 //
 //  Created by Red Beard on 23.12.2021.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-typealias SupportedCurrenciesDTO = [SupportedCurrencyDTO]
+typealias SupportedCurrencies = [SupportedCurrency]
 
-enum StatusDTO: String, Decodable {
+enum StatusCurrency: String, Decodable {
     case available = "available"
     case notAvailable = "not_available"
 }
 
-struct SupportedCurrencyDTO: Decodable {
+struct SupportedCurrency: Decodable {
     let currencyCode, currencyName: String
-    let status: StatusDTO
+    let status: StatusCurrency
     let countryCode, countryName: String
     let iconURL: URL
 
@@ -32,7 +32,7 @@ struct SupportedCurrencyDTO: Decodable {
 
         self.currencyCode = try container.decode(String.self, forKey: .currencyCode)
         self.currencyName = try container.decode(String.self, forKey: .currencyName)
-        self.status = try container.decode(StatusDTO.self, forKey: .status)
+        self.status = try container.decode(StatusCurrency.self, forKey: .status)
         self.countryCode = try container.decode(String.self, forKey: .countryCode)
         self.countryName = try container.decode(String.self, forKey: .countryName)
         self.iconURL = try container.decode(URL.self, forKey: .icon)

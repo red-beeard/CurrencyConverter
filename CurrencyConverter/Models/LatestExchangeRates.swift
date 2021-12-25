@@ -1,5 +1,5 @@
 //
-//  LatestExchangeRatesDTO.swift
+//  LatestExchangeRates.swift
 //  CurrencyConverter
 //
 //  Created by Red Beard on 25.12.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LatestExchangeRatesDTO: Decodable {
+struct LatestExchangeRates: Decodable {
     let date: Date
     let base: String
     let rates: [String: Double]

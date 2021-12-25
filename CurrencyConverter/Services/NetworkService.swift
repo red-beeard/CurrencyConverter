@@ -8,9 +8,9 @@
 import Foundation
 
 protocol INetworkService {
-    func loadSupportedCurrencies(completion: @escaping (Result<SupportedCurrenciesDTO, Error>) -> Void)
-    func loadExchangeRates(completion: @escaping (Result<LatestExchangeRatesDTO, Error>) -> Void)
-    func loadImage(currency: CurrencyToLoadImageDTO, completion: @escaping (CurrencyToLoadImageDTO, Result<Data, Error>) -> Void)
+    func loadSupportedCurrencies(completion: @escaping (Result<SupportedCurrencies, Error>) -> Void)
+    func loadExchangeRates(completion: @escaping (Result<LatestExchangeRates, Error>) -> Void)
+    func loadImage(currency: CurrencyToLoadImage, completion: @escaping (CurrencyToLoadImage, Result<Data, Error>) -> Void)
 }
 
 final class NetworkService {
@@ -64,15 +64,15 @@ final class NetworkService {
 
 extension NetworkService: INetworkService {
     
-    func loadSupportedCurrencies(completion: @escaping (Result<SupportedCurrenciesDTO, Error>) -> Void) {
+    func loadSupportedCurrencies(completion: @escaping (Result<SupportedCurrencies, Error>) -> Void) {
         self.loadData(from: .supportedCurrencies, completion: completion)
     }
     
-    func loadExchangeRates(completion: @escaping (Result<LatestExchangeRatesDTO, Error>) -> Void) {
+    func loadExchangeRates(completion: @escaping (Result<LatestExchangeRates, Error>) -> Void) {
         self.loadData(from: .latestExchangeRates, completion: completion)
     }
     
-    func loadImage(currency: CurrencyToLoadImageDTO, completion: @escaping (CurrencyToLoadImageDTO, Result<Data, Error>) -> Void) {
+    func loadImage(currency: CurrencyToLoadImage, completion: @escaping (CurrencyToLoadImage, Result<Data, Error>) -> Void) {
         let request = URLRequest(url: currency.iconURL)
         
         self.session.downloadTask(with: request) { url, response, error in
