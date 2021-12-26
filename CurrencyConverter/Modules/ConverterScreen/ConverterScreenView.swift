@@ -14,7 +14,7 @@ protocol IConverterScreenView: UIView {
 final class ConverterScreenView: UIView {
     
     private enum Constants {
-        static let spacing = CGFloat(20)
+        static let spacing = CGFloat(16)
     }
     
     private let firstCurrencyView: ICurrencyView = CurrencyView()
@@ -62,7 +62,7 @@ private extension ConverterScreenView {
         
         self.addSubview(vStack)
         NSLayoutConstraint.activate([
-            vStack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.spacing),
+            vStack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             vStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.spacing),
             vStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.spacing),
         ])
