@@ -35,6 +35,7 @@
 		81E386B827770ADF00D4B3CB /* LatestExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */; };
 		81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */; };
 		81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */; };
+		81E386BE27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestExchangeRates.swift; sourceTree = "<group>"; };
 		81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToLoadImage.swift; sourceTree = "<group>"; };
 		81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDTO.swift; sourceTree = "<group>"; };
+		81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyDiffableDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				81E3867C2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift */,
 				81E386812774B23F00D4B3CB /* SelectCurrencyScreenRouter.swift */,
 				81E386832774B73D00D4B3CB /* CurrencyCell.swift */,
+				81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */,
 			);
 			path = SelectCurrencyScreen;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				81E386772774ADC900D4B3CB /* SelectCurrencyScreenView.swift in Sources */,
 				81E386A72775CBBF00D4B3CB /* ConverterScreenView.swift in Sources */,
 				81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */,
+				81E386BE27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift in Sources */,
 				81E386842774B73D00D4B3CB /* CurrencyCell.swift in Sources */,
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */,

@@ -13,27 +13,13 @@ protocol ISelectCurrencyScreenTableAdapter: AnyObject {
     func update(_ currencies: [SelectCurrencyScreenViewModel])
 }
 
-
-//MARK: SectionIdenfier
-enum SectionIdenfier: String, CaseIterable {
-    case country = "Country"
-    case crypro = "Crypto"
-    case metal = "Metal"
-}
-
-
-//MARK: Typealias diffable data source
-typealias DiffableDataSource = UITableViewDiffableDataSource<SectionIdenfier, SelectCurrencyScreenViewModel>
-typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdenfier, SelectCurrencyScreenViewModel>
-
-
 //MARK: SelectCurrencyScreenTableAdapter
 final class SelectCurrencyScreenTableAdapter: NSObject {
     
-    private enum Constants {
-        static let heightForHeaderInSection = CGFloat(45)
-        static let headerFontSize = CGFloat(16)
-    }
+//    private enum Constants {
+//        static let heightForHeaderInSection = CGFloat(45)
+//        static let headerFontSize = CGFloat(16)
+//    }
     
     private var currencies = [SelectCurrencyScreenViewModel]()
     private var dataSource: DiffableDataSource?
@@ -50,7 +36,6 @@ final class SelectCurrencyScreenTableAdapter: NSObject {
             self.tableView?.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.indentifier)
         }
     }
-    
     
 }
 
@@ -101,15 +86,6 @@ extension SelectCurrencyScreenTableAdapter {
 }
 
 extension SelectCurrencyScreenTableAdapter: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerLabel = UILabel()
-        headerLabel.font = UIFont.systemFont(ofSize: Constants.headerFontSize)
-        headerLabel.textColor = .secondaryLabel
-        headerLabel.text = SectionIdenfier.allCases[section].rawValue
-        return headerLabel
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.heightForHeaderInSection
-    }
+
 }
+
