@@ -8,7 +8,8 @@
 import UIKit
 
 protocol IConverterScreenView: UIView {
-    
+    var firstSelectCurrencyTappedHandler: (() -> Void)? { get set }
+    var secondSelectCurrencyTappedHandler: (() -> Void)? { get set }
 }
 
 final class ConverterScreenView: UIView {
@@ -20,6 +21,17 @@ final class ConverterScreenView: UIView {
     private let firstCurrencyView: ICurrencyView = CurrencyView()
     private let secondCurrencyView: ICurrencyView = CurrencyView()
     
+    var firstSelectCurrencyTappedHandler: (() -> Void)? {
+        didSet {
+            self.firstCurrencyView.selectCurrencyTappedHandler = self.firstSelectCurrencyTappedHandler
+        }
+    }
+    var secondSelectCurrencyTappedHandler: (() -> Void)? {
+        didSet {
+            self.secondCurrencyView.selectCurrencyTappedHandler = self.secondSelectCurrencyTappedHandler
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -30,8 +42,6 @@ final class ConverterScreenView: UIView {
         self.configuireViewLayout()
     }
     
-    
-    
 }
 
 //MARK: Configuire view
@@ -40,12 +50,8 @@ private extension ConverterScreenView {
     func configuireView() {
         self.backgroundColor = .systemBackground
         
-        self.configuireCurrencyView(self.firstCurrencyView)
-        self.configuireCurrencyView(self.secondCurrencyView)
-    }
-    
-    func configuireCurrencyView(_ view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
+        self.firstCurrencyView.translatesAutoresizingMaskIntoConstraints = false
+        self.secondCurrencyView.translatesAutoresizingMaskIntoConstraints = false
     }
     
 }

@@ -25,6 +25,16 @@ final class ConverterScreenPresenter {
         self.router = router
     }
     
+    private func setHandlers() {
+        self.view?.firstSelectCurrencyTappedHandler = { [weak self] in
+            self?.router.goSelect(with: "firstCurrencyIsChange")
+        }
+        
+        self.view?.secondSelectCurrencyTappedHandler =  { [weak self] in
+            self?.router.goSelect(with: "secondCurrencyIsChange")
+        }
+    }
+    
 }
 
 extension ConverterScreenPresenter: IConverterScreenPresenter {
@@ -34,6 +44,7 @@ extension ConverterScreenPresenter: IConverterScreenPresenter {
         self.controller?.setTitle(Constants.titleVC)
         
         self.view = view
+        self.setHandlers()
     }
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ICurrencyView: UIView {
-    
+    var selectCurrencyTappedHandler: (() -> Void)? { get set }
 }
 
 final class CurrencyView: UIView {
@@ -37,6 +37,8 @@ final class CurrencyView: UIView {
     private let borderline = UIView()
     
     private let currencyStack = UIStackView()
+    
+    var selectCurrencyTappedHandler: (() -> Void)?
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -73,10 +75,17 @@ private extension CurrencyView {
         self.currencyStack.spacing = Constants.spacingInStack
         self.currencyStack.distribution = .fill
         
+        let recognize = UITapGestureRecognizer(target: self, action: #selector(self.selectCurrencyTapped))
+        self.currencyStack.addGestureRecognizer(recognize)
+        
         self.configuireFlagImageView()
         self.configuireCurrencyCode()
         self.configuireCurrencyName()
         self.configuireChevronImageView()
+    }
+    
+    @objc func selectCurrencyTapped() {
+        self.selectCurrencyTappedHandler?()
     }
     
     func configuireFlagImageView() {
