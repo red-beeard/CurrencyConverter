@@ -12,7 +12,7 @@ protocol IConverterScreenPresenter {
 final class ConverterScreenPresenter {
     
     private enum Constants {
-        static let titleVC = "Currency converter"
+        static let titleVC = "Converter"
     }
     
     private let dataManager: IDataManager

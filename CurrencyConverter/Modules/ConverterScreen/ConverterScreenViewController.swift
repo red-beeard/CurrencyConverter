@@ -33,6 +33,7 @@ final class ConverterScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view = self.converterScreenView
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
 }
