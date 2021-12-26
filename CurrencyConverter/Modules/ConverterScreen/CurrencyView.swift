@@ -17,19 +17,24 @@ final class CurrencyView: UIView {
         static let spacingInStack = CGFloat(10)
         static let spacingBetweenLabels = CGFloat(0)
         static let spacingToBorder = CGFloat(10)
+        static let spacingToTextField = CGFloat(5)
+        
+        static let heightBorderline = CGFloat(2)
         
         static let cornerRadius = CGFloat(10)
         static let chevronImage = UIImage(systemName: "chevron.right")
         
         static let currencyCodeFontSize = CGFloat(20)
         static let currencyNameFontSize = CGFloat(14)
+        static let valueTextFieldFontSize = CGFloat(30)
     }
     
     private let flagImageView = UIImageView()
     private let currencyCode = UILabel()
     private let currencyName = UILabel()
     private let chevronImageView = UIImageView(image: Constants.chevronImage)
-    private let valueTextField = UITextField()
+    private let valueTextField = ConverterTextField()
+    private let borderline = UIView()
     
     private let currencyStack = UIStackView()
     
@@ -57,6 +62,8 @@ private extension CurrencyView {
         self.layer.cornerRadius = Constants.cornerRadius
         
         self.configuireCurrencyStackView()
+        self.configuireTextField()
+        self.configuireBorderline()
     }
     
     func configuireCurrencyStackView() {
@@ -103,6 +110,18 @@ private extension CurrencyView {
         self.tintColor = .systemGray
     }
     
+    func configuireTextField() {
+        self.valueTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.valueTextField.font = UIFont.systemFont(ofSize: Constants.valueTextFieldFontSize)
+        
+        self.valueTextField.placeholder = "0.0"
+    }
+    
+    func configuireBorderline() {
+        self.borderline.translatesAutoresizingMaskIntoConstraints = false
+        self.borderline.backgroundColor = UIColor.secondarySystemFill
+    }
+    
 }
 
 //MARK: Configuire view layout
@@ -110,6 +129,8 @@ private extension CurrencyView {
     
     func configuireViewLayout() {
         self.configuireCurrencyStackViewLayout()
+        self.configuireTextFieldLayout()
+        self.configuireBorderlineLayout()
     }
     
     func configuireCurrencyStackViewLayout () {
@@ -128,7 +149,28 @@ private extension CurrencyView {
             self.currencyStack.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.spacingToBorder),
             self.currencyStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.spacingToBorder),
             self.currencyStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.spacingToBorder),
-            self.currencyStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.spacingToBorder),
+        ])
+    }
+    
+    func configuireTextFieldLayout() {
+        self.addSubview(self.valueTextField)
+        
+        NSLayoutConstraint.activate([
+            self.valueTextField.topAnchor.constraint(equalTo: self.currencyStack.bottomAnchor, constant: Constants.spacingToTextField),
+            self.valueTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.spacingToBorder),
+            self.valueTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.spacingToBorder),
+        ])
+    }
+    
+    func configuireBorderlineLayout() {
+        self.addSubview(self.borderline)
+        
+        NSLayoutConstraint.activate([
+            self.borderline.topAnchor.constraint(equalTo: self.valueTextField.bottomAnchor, constant: Constants.spacingToTextField),
+            self.borderline.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.spacingToBorder),
+            self.borderline.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.spacingToBorder),
+            self.borderline.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.spacingToBorder),
+            self.borderline.heightAnchor.constraint(equalToConstant: Constants.heightBorderline)
         ])
     }
     

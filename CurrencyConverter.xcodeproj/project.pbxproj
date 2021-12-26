@@ -36,6 +36,7 @@
 		81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */; };
 		81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */; };
 		81E386BE27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */; };
+		81E386C02778809F00D4B3CB /* ConverterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BF2778809F00D4B3CB /* ConverterTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToLoadImage.swift; sourceTree = "<group>"; };
 		81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDTO.swift; sourceTree = "<group>"; };
 		81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyDiffableDataSource.swift; sourceTree = "<group>"; };
+		81E386BF2778809F00D4B3CB /* ConverterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				81E386A82775CBC700D4B3CB /* ConverterScreenPresenter.swift */,
 				81E386AA2775CBCD00D4B3CB /* ConverterScreenRouter.swift */,
 				81E386AC2775D10A00D4B3CB /* CurrencyView.swift */,
+				81E386BF2778809F00D4B3CB /* ConverterTextField.swift */,
 			);
 			path = ConverterScreen;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				81E3867D2774AE0000D4B3CB /* SelectCurrencyScreenViewModel.swift in Sources */,
 				81E386BA27772A8100D4B3CB /* CurrencyToLoadImage.swift in Sources */,
 				819347B02774A8A400917F1E /* SceneDelegate.swift in Sources */,
+				81E386C02778809F00D4B3CB /* ConverterTextField.swift in Sources */,
 				81E386A52775CB9300D4B3CB /* ConverterScreenViewController.swift in Sources */,
 				81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */,
 				81E386B4277709E200D4B3CB /* Currency+CoreDataProperties.swift in Sources */,
