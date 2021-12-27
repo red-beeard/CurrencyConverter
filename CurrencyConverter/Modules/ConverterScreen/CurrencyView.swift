@@ -21,6 +21,7 @@ final class CurrencyView: UIView {
         static let spacingToTextField = CGFloat(5)
         
         static let heightBorderline = CGFloat(2)
+        static let widthImageView = CGFloat(50)
         
         static let cornerRadius = CGFloat(10)
         static let chevronImage = UIImage(systemName: "chevron.right")
@@ -95,7 +96,7 @@ private extension CurrencyView {
         self.flagImageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         self.flagImageView.contentMode = .scaleAspectFit
         
-        self.flagImageView.image = UIImage(named: "usd")
+        self.flagImageView.image = Constants.flagDefaultImage
     }
     
     func configuireCurrencyCode() {
@@ -103,7 +104,7 @@ private extension CurrencyView {
         self.currencyCode.textAlignment = .left
         self.currencyCode.font = UIFont.boldSystemFont(ofSize: Constants.currencyCodeFontSize)
         
-        self.currencyCode.text = "USD"
+        self.currencyCode.text = "No code"
     }
     
     func configuireCurrencyName() {
@@ -112,7 +113,7 @@ private extension CurrencyView {
         self.currencyName.font = UIFont.systemFont(ofSize: Constants.currencyNameFontSize)
         self.currencyName.textColor = .secondaryLabel
         
-        self.currencyName.text = "American Dollar"
+        self.currencyName.text = "No name"
     }
     
     func configuireChevronImageView() {
@@ -160,6 +161,9 @@ private extension CurrencyView {
             self.currencyStack.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.spacingToBorder),
             self.currencyStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.spacingToBorder),
             self.currencyStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.spacingToBorder),
+            
+            self.flagImageView.widthAnchor.constraint(equalToConstant: Constants.widthImageView),
+            self.flagImageView.heightAnchor.constraint(equalToConstant: Constants.widthImageView),
         ])
     }
     
