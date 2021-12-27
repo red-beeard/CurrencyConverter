@@ -75,7 +75,6 @@ private extension DataManager {
             switch result {
             case .success(let supportedCurrencies):
                 try? self.coreDataService.updateFromNetwork(currencies: supportedCurrencies)
-                print("supportedCurrencies")
             case .failure(let error):
                 print(error)
             }
@@ -88,7 +87,6 @@ private extension DataManager {
             switch result {
             case .success(let exchangeRates):
                 try? self.coreDataService.updateFromNetwork(rates: exchangeRates)
-                print("exchangeRates")
             case .failure(let error):
                 print(error)
             }
@@ -107,7 +105,6 @@ private extension DataManager {
                         newCurrency.imageData = data
                         
                         try? self.coreDataService.updateImageFor(currency: newCurrency)
-                        print("updateImageFor \(newCurrency.currencyCode)")
                     case .failure(let error):
                         print(error)
                     }
