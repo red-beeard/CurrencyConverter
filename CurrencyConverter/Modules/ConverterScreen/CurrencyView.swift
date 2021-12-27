@@ -10,6 +10,7 @@ import UIKit
 protocol ICurrencyView: UIView {
     var selectCurrencyTappedHandler: (() -> Void)? { get set }
     func update(viewModel: ConverterCurrencyViewModel)
+    func clearTextField()
 }
 
 final class CurrencyView: UIView {
@@ -202,6 +203,10 @@ extension CurrencyView: ICurrencyView {
         } else {
             self.flagImageView.image = Constants.flagDefaultImage
         }
+    }
+    
+    func clearTextField() {
+        self.valueTextField.text = nil
     }
     
 }

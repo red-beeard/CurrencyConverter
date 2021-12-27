@@ -13,6 +13,7 @@ protocol IConverterScreenView: UIView {
     
     func updateFirstCurrencyView(viewModel: ConverterCurrencyViewModel)
     func updateSecondCurrencyView(viewModel: ConverterCurrencyViewModel)
+    func clearTextFields()
 }
 
 final class ConverterScreenView: UIView {
@@ -93,4 +94,8 @@ extension ConverterScreenView: IConverterScreenView {
         self.updateCurrencyView(view: self.secondCurrencyView, viewModel: viewModel)
     }
     
+    func clearTextFields() {
+        self.firstCurrencyView.clearTextField()
+        self.secondCurrencyView.clearTextField()
+    }
 }

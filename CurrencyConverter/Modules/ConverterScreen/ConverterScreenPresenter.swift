@@ -80,11 +80,13 @@ final class ConverterScreenPresenter: NSObject {
             self.firstCurrency = currency
             DispatchQueue.main.async {
                 self.view?.updateFirstCurrencyView(viewModel: currencyViewModel)
+                self.view?.clearTextFields()
             }
         case PositionCurrencies.second.rawValue:
             self.secondCurrency = currency
             DispatchQueue.main.async {
                 self.view?.updateSecondCurrencyView(viewModel: currencyViewModel)
+                self.view?.clearTextFields()
             }
         default:
             return
