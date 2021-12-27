@@ -38,6 +38,7 @@
 		81E386BE27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */; };
 		81E386C02778809F00D4B3CB /* ConverterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BF2778809F00D4B3CB /* ConverterTextField.swift */; };
 		81E386C32779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386C22779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift */; };
+		81E386C5277A3E1800D4B3CB /* PositionCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386C4277A3E1800D4B3CB /* PositionCurrencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyDiffableDataSource.swift; sourceTree = "<group>"; };
 		81E386BF2778809F00D4B3CB /* ConverterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTextField.swift; sourceTree = "<group>"; };
 		81E386C22779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCurrencyViewModel.swift; sourceTree = "<group>"; };
+		81E386C4277A3E1800D4B3CB /* PositionCurrencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCurrencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				81E386B727770ADE00D4B3CB /* LatestExchangeRates.swift */,
 				81E386B927772A8100D4B3CB /* CurrencyToLoadImage.swift */,
 				81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */,
+				81E386C4277A3E1800D4B3CB /* PositionCurrencies.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				81E386A32775CB8300D4B3CB /* ConverterScreenAssembly.swift in Sources */,
 				81E386B4277709E200D4B3CB /* Currency+CoreDataProperties.swift in Sources */,
 				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
+				81E386C5277A3E1800D4B3CB /* PositionCurrencies.swift in Sources */,
 				81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */,
 				81E386B627770A4700D4B3CB /* CoreDataService.swift in Sources */,
 				81E386C32779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift in Sources */,

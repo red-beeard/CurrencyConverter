@@ -17,11 +17,6 @@ final class ConverterScreenPresenter: NSObject {
         static let titleVC = "Converter"
     }
     
-    private enum PositionCurrencies: String {
-        case first = "firstCurrency"
-        case second = "secondCurrency"
-    }
-    
     private let dataManager: IDataManager
     private let router: IConverterScreenRouter
     

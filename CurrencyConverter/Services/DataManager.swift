@@ -14,11 +14,6 @@ protocol IDataManager {
 
 final class DataManager {
     
-    private enum PositionCurrencies: String {
-        case first = "firstCurrency"
-        case second = "secondCurrency"
-    }
-    
     static let shared = DataManager()
     
     private let networkService: INetworkService = NetworkService()
