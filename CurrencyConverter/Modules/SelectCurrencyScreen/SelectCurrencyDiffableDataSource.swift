@@ -21,6 +21,10 @@ typealias TableViewData = Dictionary<SectionIdenfier, [SelectCurrencyScreenViewM
 
 final class DiffableDataSource: UITableViewDiffableDataSource<SectionIdenfier, SelectCurrencyScreenViewModel> {
     
+    deinit {
+        print("DiffableDataSource deinit")
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return SectionIdenfier.allCases[section].rawValue
     }

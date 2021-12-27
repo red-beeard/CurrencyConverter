@@ -17,6 +17,7 @@ protocol ICoreDataUpdateData {
 protocol ICoreDataGetData {
     func getAvailableCurrencies() throws -> [CurrencyDTO]
     func getCurrency(with currencyCode: String) throws -> CurrencyDTO?
+    func getDefaultCurrencies() throws -> (CurrencyDTO?, CurrencyDTO?) 
 }
 
 typealias ICoreDataService = ICoreDataUpdateData & ICoreDataGetData
@@ -67,7 +68,7 @@ extension CoreDataService: ICoreDataUpdateData {
         }
         
         for newCurrency in newCurrencies {
-            let newCurrencyEntity = Currency(entity: entity, insertInto: persistentContainer.viewContext)
+            let newCurrencyEntity = Currency(entity: entity, insertInto: context)
             newCurrencyEntity.setValues(from: newCurrency)
         }
         
@@ -143,6 +144,11 @@ extension CoreDataService: ICoreDataUpdateData {
 //MARK: ICoreDataGetData
 extension CoreDataService: ICoreDataGetData {
     
+    private enum DefaultCurrencyCode: String {
+        case usd = "USD"
+        case bitcoin = "BTC"
+    }
+    
     func getAvailableCurrencies() throws -> [CurrencyDTO] {
         let fetchRequest = Currency.fetchRequest()
         let currencies = try persistentContainer.viewContext.fetch(fetchRequest)
@@ -161,6 +167,13 @@ extension CoreDataService: ICoreDataGetData {
             return CurrencyDTO(currency: currency)
         }
         return nil
+    }
+    
+    func getDefaultCurrencies() throws -> (CurrencyDTO?, CurrencyDTO?) {
+        let usdCurrency = try self.getCurrency(with: DefaultCurrencyCode.usd.rawValue)
+        let btcCurrency = try self.getCurrency(with: DefaultCurrencyCode.bitcoin.rawValue)
+        
+        return (usdCurrency, btcCurrency)
     }
     
 }

@@ -14,6 +14,11 @@ protocol IDataManager {
 
 final class DataManager {
     
+    private enum PositionCurrencies: String {
+        case first = "firstCurrency"
+        case second = "secondCurrency"
+    }
+    
     static let shared = DataManager()
     
     private let networkService: INetworkService = NetworkService()
@@ -21,6 +26,7 @@ final class DataManager {
     
     private init() {
         self.updateData()
+        self.setDefaultCurrencies()
     }
     
     private func loadSupportedCurrencies(group: DispatchGroup) {
@@ -81,7 +87,25 @@ final class DataManager {
             group.enter()
             self.loadImages(group: group)
             group.wait()
+            
+            let currencies = try? self.coreDataService.getDefaultCurrencies()
+            
+            guard let first = currencies?.0, let firstData = try? JSONEncoder().encode(first) else { return }
+            guard let second = currencies?.1, let secondData = try? JSONEncoder().encode(second) else { return }
+            
+            UserDefaults.standard.set(firstData, forKey: PositionCurrencies.first.rawValue)
+            UserDefaults.standard.set(secondData, forKey: PositionCurrencies.second.rawValue)
         }
+    }
+    
+    private func setDefaultCurrencies() {
+        let currencies = try? self.coreDataService.getDefaultCurrencies()
+        
+        guard let first = currencies?.0, let firstData = try? JSONEncoder().encode(first) else { return }
+        guard let second = currencies?.1, let secondData = try? JSONEncoder().encode(second) else { return }
+        
+        UserDefaults.standard.set(firstData, forKey: PositionCurrencies.first.rawValue)
+        UserDefaults.standard.set(secondData, forKey: PositionCurrencies.second.rawValue)
     }
     
 }

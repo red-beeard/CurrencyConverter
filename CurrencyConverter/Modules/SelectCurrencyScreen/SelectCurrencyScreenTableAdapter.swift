@@ -14,7 +14,7 @@ protocol ISelectCurrencyScreenTableAdapter: AnyObject {
     func update(_ currencies: TableViewData)
 }
 
-protocol SelectCurrencyScreenTableAdapterDelegate {
+protocol SelectCurrencyScreenTableAdapterDelegate: AnyObject {
     func onItemSelect(currencyCode: String)
 }
 
@@ -23,7 +23,7 @@ final class SelectCurrencyScreenTableAdapter: NSObject {
     
     private var currencies = Dictionary<SectionIdenfier, [SelectCurrencyScreenViewModel]>()
     private var dataSource: DiffableDataSource?
-    var delegate: SelectCurrencyScreenTableAdapterDelegate?
+    weak var delegate: SelectCurrencyScreenTableAdapterDelegate?
     
     weak var tableView: UITableView? {
         didSet {
@@ -37,6 +37,10 @@ final class SelectCurrencyScreenTableAdapter: NSObject {
             self.tableView?.delegate = self
             self.tableView?.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.indentifier)
         }
+    }
+    
+    deinit {
+        print("SelectCurrencyScreenTableAdapter deinit")
     }
     
 }

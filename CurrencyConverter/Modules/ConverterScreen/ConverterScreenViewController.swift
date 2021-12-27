@@ -9,6 +9,7 @@ import UIKit
 
 protocol IConverterScreenViewController: UIViewController {
     func setTitle(_ title: String)
+    func showAlert(title: String, message: String)
 }
 
 final class ConverterScreenViewController: UIViewController {
@@ -39,7 +40,20 @@ final class ConverterScreenViewController: UIViewController {
 }
 
 extension ConverterScreenViewController: IConverterScreenViewController {
+    
     func setTitle(_ title: String) {
         self.title = title
     }
+    
+    func showAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+            self.dismiss(animated: true)
+        }
+        alertVC.addAction(okAction)
+        
+        self.present(alertVC, animated: true)
+    }
+    
 }

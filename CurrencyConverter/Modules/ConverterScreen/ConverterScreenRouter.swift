@@ -13,7 +13,7 @@ protocol IConverterScreenRouter {
 
 final class ConverterScreenRouter: IConverterScreenRouter {
     
-    var controller: UIViewController?
+    weak var controller: UIViewController?
     
     func goSelect(for key: String) {
         let controller = SelectCurrencyScreenAssembly.build(for: key)

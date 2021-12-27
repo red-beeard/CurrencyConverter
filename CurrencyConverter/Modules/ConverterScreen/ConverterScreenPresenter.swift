@@ -51,6 +51,24 @@ final class ConverterScreenPresenter: NSObject {
         UserDefaults.standard.addObserver(self, forKeyPath: PositionCurrencies.second.rawValue, options: .new, context: nil)
     }
     
+    private func setCurrencies() {
+        let firstCurrencyData = UserDefaults.standard.data(forKey: PositionCurrencies.first.rawValue)
+        let secondCurrencyData = UserDefaults.standard.data(forKey: PositionCurrencies.second.rawValue)
+        
+        if let firstCurrencyData = firstCurrencyData, let secondCurrencyData = secondCurrencyData {
+            guard let firstCurrency = try? JSONDecoder().decode(CurrencyDTO.self, from: firstCurrencyData) else { return }
+            let firstCurrencyViewModel = ConverterCurrencyViewModel(firstCurrency)
+            
+            guard let secondCurrency = try? JSONDecoder().decode(CurrencyDTO.self, from: secondCurrencyData) else { return }
+            let secondCurrencyViewModel = ConverterCurrencyViewModel(secondCurrency)
+            
+            DispatchQueue.main.async {
+                self.view?.updateFirstCurrencyView(viewModel: firstCurrencyViewModel)
+                self.view?.updateSecondCurrencyView(viewModel: secondCurrencyViewModel)
+            }
+        }
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else { return }
         guard let currencyData = UserDefaults.standard.data(forKey: keyPath) else { return }
@@ -73,10 +91,6 @@ final class ConverterScreenPresenter: NSObject {
         }
     }
     
-    func setDefaultCurrencies() {
-        
-    }
-    
 }
 
 extension ConverterScreenPresenter: IConverterScreenPresenter {
@@ -89,7 +103,7 @@ extension ConverterScreenPresenter: IConverterScreenPresenter {
         
         self.setHandlers()
         self.addObservers()
-        self.setDefaultCurrencies()
+        self.setCurrencies()
     }
     
 }

@@ -19,6 +19,10 @@ final class SelectCurrencyScreenView: UIView {
     
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
+    deinit {
+        print("SelectCurrencyScreenView deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -36,6 +36,10 @@ final class SelectCurrencyScreenPresenter {
         self.tableAdapter = tableAdapter
     }
     
+    deinit {
+        print("SelectCurrencyScreenPresenter deinit")
+    }
+    
     private func loadData() {
         self.dataManager.loadAvailableCurrenciesWithRate { [weak self] result in
             switch result {
@@ -119,19 +123,19 @@ extension SelectCurrencyScreenPresenter: ISelectCurrencyScreenPresenter {
 extension SelectCurrencyScreenPresenter: SelectCurrencyScreenTableAdapterDelegate {
     
     func onItemSelect(currencyCode: String) {
-        self.dataManager.getCurrency(with: currencyCode) { result in
+        self.dataManager.getCurrency(with: currencyCode) { [weak self] result in
             switch result {
             case .success(let currency):
-                if let currency = currency {
+                if let currency = currency, let key = self?.keyForSelect {
                     let currencyData = try? JSONEncoder().encode(currency)
-                    UserDefaults.standard.set(currencyData, forKey: self.keyForSelect)
+                    UserDefaults.standard.set(currencyData, forKey: key)
                     
                     DispatchQueue.main.async {
-                        self.router.goBack()
+                        self?.router.goBack()
                     }
                 }
             case .failure(let error):
-                self.controller?.showAlert(title: "Error😔", message: error.localizedDescription)
+                self?.controller?.showAlert(title: "Error😔", message: error.localizedDescription)
             }
         }
     }

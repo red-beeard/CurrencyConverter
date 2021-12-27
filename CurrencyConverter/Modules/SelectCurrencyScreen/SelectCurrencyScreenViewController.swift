@@ -22,6 +22,10 @@ final class SelectCurrencyScreenViewController: UIViewController {
     
     var cancelButtonTappedHandler: (() -> Void)?
     
+    deinit {
+        print("SelectCurrencyScreenViewController deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -58,6 +62,7 @@ final class SelectCurrencyScreenViewController: UIViewController {
     @objc private func cancelButtonTapped() {
         self.cancelButtonTappedHandler?()
     }
+    
     
 }
 
