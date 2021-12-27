@@ -130,6 +130,7 @@ private extension CurrencyView {
     func configuireTextField() {
         self.valueTextField.translatesAutoresizingMaskIntoConstraints = false
         self.valueTextField.font = UIFont.systemFont(ofSize: Constants.valueTextFieldFontSize)
+        self.valueTextField.delegate = self
         self.valueTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
         
         self.valueTextField.placeholder = "0.0"
@@ -222,4 +223,33 @@ extension CurrencyView: ICurrencyView {
         self.valueTextField.text = nil
     }
     
+}
+
+// MARK: - Work with text fields and keyboard
+extension CurrencyView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        textField.inputAccessoryView = keyboardToolbar
+        keyboardToolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(didTapDone)
+        )
+        
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        
+        keyboardToolbar.items = [flexBarButton, doneButton]
+    }
+    
+    @objc private func didTapDone() {
+        self.superview?.endEditing(true)
+    }
+
 }
