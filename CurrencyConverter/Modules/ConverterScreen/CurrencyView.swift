@@ -9,6 +9,7 @@ import UIKit
 
 protocol ICurrencyView: UIView {
     var selectCurrencyTappedHandler: (() -> Void)? { get set }
+    func update(viewModel: ConverterCurrencyViewModel)
 }
 
 final class CurrencyView: UIView {
@@ -23,6 +24,7 @@ final class CurrencyView: UIView {
         
         static let cornerRadius = CGFloat(10)
         static let chevronImage = UIImage(systemName: "chevron.right")
+        static let flagDefaultImage = UIImage(systemName: "flag.slash.circle")
         
         static let currencyCodeFontSize = CGFloat(20)
         static let currencyNameFontSize = CGFloat(14)
@@ -186,5 +188,16 @@ private extension CurrencyView {
 }
 
 extension CurrencyView: ICurrencyView {
+    
+    func update(viewModel: ConverterCurrencyViewModel) {
+        self.currencyCode.text = viewModel.currencyCode
+        self.currencyName.text = viewModel.currencyName
+        
+        if let imageData = viewModel.image, let image = UIImage(data: imageData) {
+            self.flagImageView.image = image
+        } else {
+            self.flagImageView.image = Constants.flagDefaultImage
+        }
+    }
     
 }

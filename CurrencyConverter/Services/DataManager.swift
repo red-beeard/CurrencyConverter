@@ -9,6 +9,7 @@ import Foundation
 
 protocol IDataManager {
     func loadAvailableCurrenciesWithRate(completion: @escaping (Result<[CurrencyDTO], Error>) -> Void)
+    func getCurrency(with currencyCode: String, completion: @escaping (Result<CurrencyDTO?, Error>) -> Void)
 }
 
 final class DataManager {
@@ -99,6 +100,17 @@ extension DataManager: IDataManager {
                 
                 currencies = try self.coreDataService.getAvailableCurrencies()
                 completion(.success(currencies))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getCurrency(with currencyCode: String, completion: @escaping (Result<CurrencyDTO?, Error>) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let currency = try self.coreDataService.getCurrency(with: currencyCode)
+                completion(.success(currency))
             } catch {
                 completion(.failure(error))
             }

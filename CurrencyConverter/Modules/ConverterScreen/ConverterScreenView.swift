@@ -10,6 +10,9 @@ import UIKit
 protocol IConverterScreenView: UIView {
     var firstSelectCurrencyTappedHandler: (() -> Void)? { get set }
     var secondSelectCurrencyTappedHandler: (() -> Void)? { get set }
+    
+    func updateFirstCurrencyView(viewModel: ConverterCurrencyViewModel)
+    func updateSecondCurrencyView(viewModel: ConverterCurrencyViewModel)
 }
 
 final class ConverterScreenView: UIView {
@@ -77,5 +80,17 @@ private extension ConverterScreenView {
 }
 
 extension ConverterScreenView: IConverterScreenView {
+    
+    func updateCurrencyView(view: ICurrencyView, viewModel: ConverterCurrencyViewModel) {
+        view.update(viewModel: viewModel)
+    }
+    
+    func updateFirstCurrencyView(viewModel: ConverterCurrencyViewModel) {
+        self.updateCurrencyView(view: self.firstCurrencyView, viewModel: viewModel)
+    }
+    
+    func updateSecondCurrencyView(viewModel: ConverterCurrencyViewModel) {
+        self.updateCurrencyView(view: self.secondCurrencyView, viewModel: viewModel)
+    }
     
 }

@@ -10,19 +10,21 @@ import UIKit
 //MARK: Protocols
 protocol ISelectCurrencyScreenTableAdapter: AnyObject {
     var tableView: UITableView? { get set }
-    func update(_ currencies: [SelectCurrencyScreenViewModel])
+    var delegate: SelectCurrencyScreenTableAdapterDelegate? { get set }
+    func update(_ currencies: TableViewData)
+}
+
+protocol SelectCurrencyScreenTableAdapterDelegate {
+    func onItemSelect(currencyCode: String)
 }
 
 //MARK: SelectCurrencyScreenTableAdapter
 final class SelectCurrencyScreenTableAdapter: NSObject {
     
-//    private enum Constants {
-//        static let heightForHeaderInSection = CGFloat(45)
-//        static let headerFontSize = CGFloat(16)
-//    }
-    
-    private var currencies = [SelectCurrencyScreenViewModel]()
+    private var currencies = Dictionary<SectionIdenfier, [SelectCurrencyScreenViewModel]>()
     private var dataSource: DiffableDataSource?
+    var delegate: SelectCurrencyScreenTableAdapterDelegate?
+    
     weak var tableView: UITableView? {
         didSet {
             guard let tableView = tableView else {
@@ -42,7 +44,7 @@ final class SelectCurrencyScreenTableAdapter: NSObject {
 //MARK: ISelectCurrencyScreenTableAdapter
 extension SelectCurrencyScreenTableAdapter: ISelectCurrencyScreenTableAdapter {
     
-    func update(_ currencies: [SelectCurrencyScreenViewModel]) {
+    func update(_ currencies: TableViewData) {
         self.currencies = currencies
         applySnapshot(animatingDifferences: false)
     }
@@ -69,23 +71,26 @@ extension SelectCurrencyScreenTableAdapter {
         var snapshot = Snapshot()
         
         snapshot.appendSections(SectionIdenfier.allCases)
-        for currency in self.currencies {
-            switch currency.countryCode {
-            case SectionIdenfier.crypro.rawValue:
-                snapshot.appendItems([currency], toSection: .crypro)
-            case SectionIdenfier.metal.rawValue:
-                snapshot.appendItems([currency], toSection: .metal)
-            default:
-                snapshot.appendItems([currency], toSection: .country)
-            }
+        for section in SectionIdenfier.allCases {
+            snapshot.appendItems(self.currencies[section] ?? [], toSection: section)
         }
-        
+    
         dataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
 }
 
 extension SelectCurrencyScreenTableAdapter: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = SectionIdenfier.allCases[indexPath.section]
+        let currenciesInSection = self.currencies[section]
+        let currency = currenciesInSection?[indexPath.row]
+        
+        if let currency = currency {
+            self.delegate?.onItemSelect(currencyCode: currency.currencyCode)
+        }
+    }
 
 }
 

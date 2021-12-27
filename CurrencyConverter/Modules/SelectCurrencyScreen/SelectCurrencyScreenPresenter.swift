@@ -22,30 +22,60 @@ final class SelectCurrencyScreenPresenter {
     private let dataManager: IDataManager
     private let router: ISelectCurrencyScreenRouter
     private let tableAdapter: ISelectCurrencyScreenTableAdapter
+    private let keyForSelect: String
     
     private var currencies = [CurrencyDTO]()
     
     private weak var controller: ISelectCurrencyScreenViewController?
     private weak var view: ISelectCurrencyScreenView?
     
-    init(dataManager: IDataManager, router: ISelectCurrencyScreenRouter, tableAdapter: ISelectCurrencyScreenTableAdapter) {
+    init(keyForSelect: String, dataManager: IDataManager, router: ISelectCurrencyScreenRouter, tableAdapter: ISelectCurrencyScreenTableAdapter) {
+        self.keyForSelect = keyForSelect
         self.dataManager = dataManager
         self.router = router
         self.tableAdapter = tableAdapter
     }
     
     private func loadData() {
-        self.dataManager.loadAvailableCurrenciesWithRate { result in
+        self.dataManager.loadAvailableCurrenciesWithRate { [weak self] result in
             switch result {
             case .success(let currencies):
-                self.currencies = currencies
-                let viewModelCurrencies = currencies.map { SelectCurrencyScreenViewModel($0) }
-                DispatchQueue.main.async {
-                    self.tableAdapter.update(viewModelCurrencies)
+                self?.currencies = currencies
+                
+                if let viewModelCurrencies = self?.getViewModelCurrencies(from: currencies) {
+                    DispatchQueue.main.async {
+                        self?.tableAdapter.update(viewModelCurrencies)
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    private func setHandlers() {
+        self.controller?.cancelButtonTappedHandler = { [weak self] in
+            self?.router.goBack()
+        }
+    }
+    
+    private func getViewModelCurrencies(from currencies: [CurrencyDTO]) -> TableViewData {
+        currencies.reduce(into: TableViewData()) { partialResult, currency in
+            let currencyViewModel = SelectCurrencyScreenViewModel(currency)
+            
+            var section: SectionIdenfier
+            switch currency.countryCode {
+            case SectionIdenfier.crypro.rawValue: section = SectionIdenfier.crypro
+            case SectionIdenfier.metal.rawValue: section = SectionIdenfier.metal
+            default: section = SectionIdenfier.country
+            }
+            
+            if partialResult[section] != nil {
+                partialResult[section]?.append(currencyViewModel)
+            } else {
+                partialResult[section] = [currencyViewModel]
+            }
+            
         }
     }
     
@@ -60,23 +90,50 @@ extension SelectCurrencyScreenPresenter: ISelectCurrencyScreenPresenter {
         
         self.view = view
         self.tableAdapter.tableView = self.view?.getTableView()
+        self.tableAdapter.delegate = self
+        
         self.loadData()
+        self.setHandlers()
     }
     
     func filteredCurrencies(_ text: String?) {
-        var viewModelCurrencies = self.currencies.map { SelectCurrencyScreenViewModel($0) }
+        var viewModelCurrencies = self.getViewModelCurrencies(from: self.currencies)
         
         guard let text = text, text.isEmpty == false else {
             self.tableAdapter.update(viewModelCurrencies)
             return
         }
-
-        viewModelCurrencies = viewModelCurrencies.filter { currency in
-            currency.currencyName.localizedCaseInsensitiveContains(text) ||
-            currency.currencyCode.localizedCaseInsensitiveContains(text)
+        
+        for (section, currencies) in viewModelCurrencies {
+            viewModelCurrencies[section] = currencies.filter { currency in
+                currency.currencyName.localizedCaseInsensitiveContains(text) ||
+                currency.currencyCode.localizedCaseInsensitiveContains(text)
+            }
         }
         
         self.tableAdapter.update(viewModelCurrencies)
+    }
+    
+}
+
+extension SelectCurrencyScreenPresenter: SelectCurrencyScreenTableAdapterDelegate {
+    
+    func onItemSelect(currencyCode: String) {
+        self.dataManager.getCurrency(with: currencyCode) { result in
+            switch result {
+            case .success(let currency):
+                if let currency = currency {
+                    let currencyData = try? JSONEncoder().encode(currency)
+                    UserDefaults.standard.set(currencyData, forKey: self.keyForSelect)
+                    
+                    DispatchQueue.main.async {
+                        self.router.goBack()
+                    }
+                }
+            case .failure(let error):
+                self.controller?.showAlert(title: "Error😔", message: error.localizedDescription)
+            }
+        }
     }
     
 }

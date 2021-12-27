@@ -17,6 +17,7 @@ enum SectionIdenfier: String, CaseIterable {
 
 //MARK: Typealias snapshot
 typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdenfier, SelectCurrencyScreenViewModel>
+typealias TableViewData = Dictionary<SectionIdenfier, [SelectCurrencyScreenViewModel]>
 
 final class DiffableDataSource: UITableViewDiffableDataSource<SectionIdenfier, SelectCurrencyScreenViewModel> {
     

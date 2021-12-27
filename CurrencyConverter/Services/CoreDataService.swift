@@ -16,6 +16,7 @@ protocol ICoreDataUpdateData {
 
 protocol ICoreDataGetData {
     func getAvailableCurrencies() throws -> [CurrencyDTO]
+    func getCurrency(with currencyCode: String) throws -> CurrencyDTO?
 }
 
 typealias ICoreDataService = ICoreDataUpdateData & ICoreDataGetData
@@ -149,6 +150,17 @@ extension CoreDataService: ICoreDataGetData {
         let availableCurrencies = currencies.filter { $0.status == StatusCurrency.available.rawValue }
         
         return availableCurrencies.compactMap { CurrencyDTO(currency: $0) }
+    }
+    
+    func getCurrency(with currencyCode: String) throws -> CurrencyDTO? {
+        let fetchRequest = Currency.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", currencyCode)
+        
+        let currency = try persistentContainer.viewContext.fetch(fetchRequest)
+        if let currency = currency.first {
+            return CurrencyDTO(currency: currency)
+        }
+        return nil
     }
     
 }

@@ -8,12 +8,13 @@
 import UIKit
 
 final class SelectCurrencyScreenAssembly {
-    static func build() -> UIViewController {
+    static func build(for key: String) -> UIViewController {
         let dataManager = DataManager.shared
         let router = SelectCurrencyScreenRouter()
         let tableAdapter = SelectCurrencyScreenTableAdapter()
         
         let presenter = SelectCurrencyScreenPresenter(
+            keyForSelect: key,
             dataManager: dataManager,
             router: router,
             tableAdapter: tableAdapter

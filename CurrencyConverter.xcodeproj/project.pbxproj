@@ -37,6 +37,7 @@
 		81E386BC27775EE500D4B3CB /* CurrencyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */; };
 		81E386BE27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */; };
 		81E386C02778809F00D4B3CB /* ConverterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386BF2778809F00D4B3CB /* ConverterTextField.swift */; };
+		81E386C32779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E386C22779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		81E386BB27775EE500D4B3CB /* CurrencyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDTO.swift; sourceTree = "<group>"; };
 		81E386BD27778F4100D4B3CB /* SelectCurrencyDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyDiffableDataSource.swift; sourceTree = "<group>"; };
 		81E386BF2778809F00D4B3CB /* ConverterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTextField.swift; sourceTree = "<group>"; };
+		81E386C22779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCurrencyViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				81E386AA2775CBCD00D4B3CB /* ConverterScreenRouter.swift */,
 				81E386AC2775D10A00D4B3CB /* CurrencyView.swift */,
 				81E386BF2778809F00D4B3CB /* ConverterTextField.swift */,
+				81E386C22779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift */,
 			);
 			path = ConverterScreen;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				81E386802774AF3F00D4B3CB /* DataManager.swift in Sources */,
 				81E386862774D58B00D4B3CB /* NetworkService.swift in Sources */,
 				81E386B627770A4700D4B3CB /* CoreDataService.swift in Sources */,
+				81E386C32779CC4A00D4B3CB /* ConverterCurrencyViewModel.swift in Sources */,
 				81E386792774ADE500D4B3CB /* SelectCurrencyScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

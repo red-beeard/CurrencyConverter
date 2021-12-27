@@ -8,15 +8,15 @@
 import UIKit
 
 protocol IConverterScreenRouter {
-    func goSelect(with notification: String)
+    func goSelect(for key: String)
 }
 
 final class ConverterScreenRouter: IConverterScreenRouter {
     
     var controller: UIViewController?
     
-    func goSelect(with notification: String) {
-        let controller = SelectCurrencyScreenAssembly.build()
+    func goSelect(for key: String) {
+        let controller = SelectCurrencyScreenAssembly.build(for: key)
         self.controller?.present(controller, animated: true)
     }
     

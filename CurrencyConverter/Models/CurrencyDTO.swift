@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyDTO {
+struct CurrencyDTO: Codable {
     let currencyCode, currencyName: String
     let countryCode: String
     let image: Data?
