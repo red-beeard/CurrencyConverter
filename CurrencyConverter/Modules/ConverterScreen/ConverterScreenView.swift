@@ -11,8 +11,15 @@ protocol IConverterScreenView: UIView {
     var firstSelectCurrencyTappedHandler: (() -> Void)? { get set }
     var secondSelectCurrencyTappedHandler: (() -> Void)? { get set }
     
+    var firstCurrencyValueChanged: ((String?) -> Void)? { get set }
+    var secondCurrencyValueChanged: ((String?) -> Void)? { get set }
+    
     func updateFirstCurrencyView(viewModel: ConverterCurrencyViewModel)
     func updateSecondCurrencyView(viewModel: ConverterCurrencyViewModel)
+    
+    func updateFirstTextField(_ text: String?)
+    func updateSecondTextField(_ text: String?)
+    
     func clearTextFields()
 }
 
@@ -33,6 +40,16 @@ final class ConverterScreenView: UIView {
     var secondSelectCurrencyTappedHandler: (() -> Void)? {
         didSet {
             self.secondCurrencyView.selectCurrencyTappedHandler = self.secondSelectCurrencyTappedHandler
+        }
+    }
+    var firstCurrencyValueChanged: ((String?) -> Void)? {
+        didSet {
+            self.firstCurrencyView.textFieldValueChanged = self.firstCurrencyValueChanged
+        }
+    }
+    var secondCurrencyValueChanged: ((String?) -> Void)? {
+        didSet {
+            self.secondCurrencyView.textFieldValueChanged = self.secondCurrencyValueChanged
         }
     }
     
@@ -60,7 +77,7 @@ private extension ConverterScreenView {
     
 }
 
-//MARK: Configuire view
+//MARK: Configuire view layout
 private extension ConverterScreenView {
     
     func configuireViewLayout() {
@@ -81,17 +98,21 @@ private extension ConverterScreenView {
 }
 
 extension ConverterScreenView: IConverterScreenView {
-    
-    func updateCurrencyView(view: ICurrencyView, viewModel: ConverterCurrencyViewModel) {
-        view.update(viewModel: viewModel)
-    }
-    
+
     func updateFirstCurrencyView(viewModel: ConverterCurrencyViewModel) {
-        self.updateCurrencyView(view: self.firstCurrencyView, viewModel: viewModel)
+        self.firstCurrencyView.update(viewModel: viewModel)
     }
     
     func updateSecondCurrencyView(viewModel: ConverterCurrencyViewModel) {
-        self.updateCurrencyView(view: self.secondCurrencyView, viewModel: viewModel)
+        self.secondCurrencyView.update(viewModel: viewModel)
+    }
+    
+    func updateFirstTextField(_ text: String?) {
+        self.firstCurrencyView.updateTextField(text)
+    }
+    
+    func updateSecondTextField(_ text: String?) {
+        self.secondCurrencyView.updateTextField(text)
     }
     
     func clearTextFields() {

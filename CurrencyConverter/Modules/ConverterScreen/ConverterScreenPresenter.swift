@@ -39,6 +39,14 @@ final class ConverterScreenPresenter: NSObject {
         self.view?.secondSelectCurrencyTappedHandler =  { [weak self] in
             self?.router.goSelect(for: PositionCurrencies.second.rawValue)
         }
+        
+        self.view?.firstCurrencyValueChanged = { [weak self] value in
+            self?.updateConverterValue(value, PositionCurrencies.first)
+        }
+        
+        self.view?.secondCurrencyValueChanged = { [weak self] value in
+            self?.updateConverterValue(value, PositionCurrencies.second)
+        }
     }
     
     private func addObservers() {
@@ -52,15 +60,44 @@ final class ConverterScreenPresenter: NSObject {
         
         if let firstCurrencyData = firstCurrencyData, let secondCurrencyData = secondCurrencyData {
             guard let firstCurrency = try? JSONDecoder().decode(CurrencyDTO.self, from: firstCurrencyData) else { return }
+            self.firstCurrency = firstCurrency
             let firstCurrencyViewModel = ConverterCurrencyViewModel(firstCurrency)
             
             guard let secondCurrency = try? JSONDecoder().decode(CurrencyDTO.self, from: secondCurrencyData) else { return }
+            self.secondCurrency = secondCurrency
             let secondCurrencyViewModel = ConverterCurrencyViewModel(secondCurrency)
             
             DispatchQueue.main.async {
                 self.view?.updateFirstCurrencyView(viewModel: firstCurrencyViewModel)
                 self.view?.updateSecondCurrencyView(viewModel: secondCurrencyViewModel)
             }
+        }
+    }
+    
+    private func updateConverterValue(_ value: String?, _ position: PositionCurrencies) {
+        guard let value = value,
+              let doubleValue = Double(value)
+        else {
+            self.view?.clearTextFields()
+            return
+        }
+        
+        guard let firstExchange = firstCurrency?.exchangeRate else {
+            self.view?.updateSecondTextField(nil)
+            return
+        }
+        guard let secondExchange = secondCurrency?.exchangeRate else {
+            self.view?.updateFirstTextField(nil)
+            return
+        }
+        
+        switch position {
+        case .first:
+            let result = secondExchange * doubleValue / firstExchange
+            self.view?.updateSecondTextField(String(result))
+        case .second:
+            let result = firstExchange * doubleValue / secondExchange
+            self.view?.updateFirstTextField(String(result))
         }
     }
     

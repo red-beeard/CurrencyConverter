@@ -9,7 +9,10 @@ import UIKit
 
 protocol ICurrencyView: UIView {
     var selectCurrencyTappedHandler: (() -> Void)? { get set }
+    var textFieldValueChanged: ((String?) -> Void)? { get set }
+    
     func update(viewModel: ConverterCurrencyViewModel)
+    func updateTextField(_ text: String?)
     func clearTextField()
 }
 
@@ -43,6 +46,7 @@ final class CurrencyView: UIView {
     private let currencyStack = UIStackView()
     
     var selectCurrencyTappedHandler: (() -> Void)?
+    var textFieldValueChanged: ((String?) -> Void)?
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -126,8 +130,13 @@ private extension CurrencyView {
     func configuireTextField() {
         self.valueTextField.translatesAutoresizingMaskIntoConstraints = false
         self.valueTextField.font = UIFont.systemFont(ofSize: Constants.valueTextFieldFontSize)
+        self.valueTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
         
         self.valueTextField.placeholder = "0.0"
+    }
+    
+    @objc func textFieldEditingChanged() {
+        self.textFieldValueChanged?(self.valueTextField.text)
     }
     
     func configuireBorderline() {
@@ -203,6 +212,10 @@ extension CurrencyView: ICurrencyView {
         } else {
             self.flagImageView.image = Constants.flagDefaultImage
         }
+    }
+    
+    func updateTextField(_ text: String?) {
+        self.valueTextField.text = text
     }
     
     func clearTextField() {
