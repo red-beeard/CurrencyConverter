@@ -25,11 +25,57 @@ final class DataManager {
     private let coreDataService: ICoreDataService = CoreDataService()
     
     private init() {
-        self.updateData()
-        self.setDefaultCurrencies()
+        self.initialSetting()
     }
     
-    private func loadSupportedCurrencies(group: DispatchGroup) {
+}
+
+//MARK: Method for update data
+private extension DataManager {
+    
+    private func initialSetting() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let group = DispatchGroup()
+            self.updateData(group: group)
+            group.wait()
+            
+            let firstCurrencyData = UserDefaults.standard.data(forKey: PositionCurrencies.first.rawValue)
+            let secondCurrencyData = UserDefaults.standard.data(forKey: PositionCurrencies.second.rawValue)
+            if firstCurrencyData == nil && secondCurrencyData == nil {
+                self.setDefaultCurrencies()
+            }
+        }
+    }
+    
+    func updateData(group: DispatchGroup = DispatchGroup()) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            group.enter()
+            self.loadSupportedCurrencies(group: group)
+            group.wait()
+            group.enter()
+            self.loadExchangeRates(group: group)
+            group.enter()
+            self.loadImages(group: group)
+            group.wait()
+        }
+    }
+    
+    func setDefaultCurrencies() {
+        let currencies = try? self.coreDataService.getDefaultCurrencies()
+        
+        guard let first = currencies?.0, let firstData = try? JSONEncoder().encode(first) else { return }
+        guard let second = currencies?.1, let secondData = try? JSONEncoder().encode(second) else { return }
+        
+        UserDefaults.standard.set(firstData, forKey: PositionCurrencies.first.rawValue)
+        UserDefaults.standard.set(secondData, forKey: PositionCurrencies.second.rawValue)
+    }
+    
+}
+
+//MARK: Method for loads
+private extension DataManager {
+    
+    func loadSupportedCurrencies(group: DispatchGroup) {
         self.networkService.loadSupportedCurrencies { result in
             switch result {
             case .success(let supportedCurrencies):
@@ -42,7 +88,7 @@ final class DataManager {
         }
     }
     
-    private func loadExchangeRates(group: DispatchGroup) {
+    func loadExchangeRates(group: DispatchGroup) {
         self.networkService.loadExchangeRates { result in
             switch result {
             case .success(let exchangeRates):
@@ -55,7 +101,7 @@ final class DataManager {
         }
     }
     
-    private func loadImages(group: DispatchGroup) {
+    func loadImages(group: DispatchGroup) {
         if let currencies = try? self.coreDataService.needToUploadIcons() {
             for currency in currencies {
                 group.enter()
@@ -76,39 +122,8 @@ final class DataManager {
         }
         group.leave()
     }
-    
-    private func updateData(group: DispatchGroup = DispatchGroup()) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            group.enter()
-            self.loadSupportedCurrencies(group: group)
-            group.wait()
-            group.enter()
-            self.loadExchangeRates(group: group)
-            group.enter()
-            self.loadImages(group: group)
-            group.wait()
-            
-            let currencies = try? self.coreDataService.getDefaultCurrencies()
-            
-            guard let first = currencies?.0, let firstData = try? JSONEncoder().encode(first) else { return }
-            guard let second = currencies?.1, let secondData = try? JSONEncoder().encode(second) else { return }
-            
-            UserDefaults.standard.set(firstData, forKey: PositionCurrencies.first.rawValue)
-            UserDefaults.standard.set(secondData, forKey: PositionCurrencies.second.rawValue)
-        }
-    }
-    
-    private func setDefaultCurrencies() {
-        let currencies = try? self.coreDataService.getDefaultCurrencies()
-        
-        guard let first = currencies?.0, let firstData = try? JSONEncoder().encode(first) else { return }
-        guard let second = currencies?.1, let secondData = try? JSONEncoder().encode(second) else { return }
-        
-        UserDefaults.standard.set(firstData, forKey: PositionCurrencies.first.rawValue)
-        UserDefaults.standard.set(secondData, forKey: PositionCurrencies.second.rawValue)
-    }
-    
 }
+
 
 extension DataManager: IDataManager {
     

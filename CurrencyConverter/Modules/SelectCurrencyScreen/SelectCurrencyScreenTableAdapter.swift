@@ -39,10 +39,6 @@ final class SelectCurrencyScreenTableAdapter: NSObject {
         }
     }
     
-    deinit {
-        print("SelectCurrencyScreenTableAdapter deinit")
-    }
-    
 }
 
 //MARK: ISelectCurrencyScreenTableAdapter

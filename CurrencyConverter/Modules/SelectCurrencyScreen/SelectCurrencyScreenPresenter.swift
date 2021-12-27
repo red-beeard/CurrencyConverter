@@ -36,10 +36,6 @@ final class SelectCurrencyScreenPresenter {
         self.tableAdapter = tableAdapter
     }
     
-    deinit {
-        print("SelectCurrencyScreenPresenter deinit")
-    }
-    
     private func loadData() {
         self.dataManager.loadAvailableCurrenciesWithRate { [weak self] result in
             switch result {

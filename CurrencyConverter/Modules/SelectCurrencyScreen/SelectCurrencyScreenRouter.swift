@@ -14,11 +14,7 @@ protocol ISelectCurrencyScreenRouter {
 final class SelectCurrencyScreenRouter: ISelectCurrencyScreenRouter {
     
     weak var controller: UIViewController?
-    
-    deinit {
-        print("SelectCurrencyScreenRouter deinit")
-    }
-    
+
     func goBack() {
         self.controller?.dismiss(animated: true)
     }

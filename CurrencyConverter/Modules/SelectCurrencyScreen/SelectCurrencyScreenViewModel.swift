@@ -26,7 +26,6 @@ extension SelectCurrencyScreenViewModel: Hashable {
         hasher.combine(self.currencyCode)
     }
     
-    // 3
     static func == (lhs: SelectCurrencyScreenViewModel, rhs: SelectCurrencyScreenViewModel) -> Bool {
         lhs.currencyCode == rhs.currencyCode
     }
